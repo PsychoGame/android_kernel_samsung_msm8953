@@ -1,0 +1,11 @@
+--- original/net/ipv6/ip6_fib.c	2020-05-07 08:31:27.936767897 +0200
++++ changed/net/ipv6/ip6_fib.c	2019-06-03 13:39:54.000000000 +0200
+@@ -1482,7 +1482,7 @@ static int fib6_walk_continue(struct fib
+ skip:
+ 			w->state = FWS_U;
+ 		case FWS_U:
+-			if (fn == w->root)
++			if (fn == w->root || !fn->parent)
+ 				return 0;
+ 			pn = fn->parent;
+ 			w->node = pn;

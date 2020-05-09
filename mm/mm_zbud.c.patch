@@ -1,0 +1,37 @@
+--- original/mm/zbud.c	2020-05-07 08:06:22.635179808 +0200
++++ changed/mm/zbud.c	2019-06-03 13:39:54.000000000 +0200
+@@ -133,7 +133,7 @@ static struct zbud_ops zbud_zpool_ops =
+ static void *zbud_zpool_create(char *name, gfp_t gfp,
+ 			struct zpool_ops *zpool_ops)
+ {
+-	return zbud_create_pool(gfp, &zbud_zpool_ops);
++	return zbud_create_pool(gfp, zpool_ops ? &zbud_zpool_ops : NULL);
+ }
+ 
+ static void zbud_zpool_destroy(void *pool)
+@@ -185,6 +185,16 @@ static u64 zbud_zpool_total_size(void *p
+ 	return zbud_get_pool_size(pool) * PAGE_SIZE;
+ }
+ 
++static unsigned long zbud_zpool_compact(void *pool)
++{
++	return 0;
++}
++
++static bool zbud_zpool_compactable(void *pool, unsigned int pages)
++{
++	return false;
++}
++
+ static struct zpool_driver zbud_zpool_driver = {
+ 	.type =		"zbud",
+ 	.owner =	THIS_MODULE,
+@@ -196,6 +206,8 @@ static struct zpool_driver zbud_zpool_dr
+ 	.map =		zbud_zpool_map,
+ 	.unmap =	zbud_zpool_unmap,
+ 	.total_size =	zbud_zpool_total_size,
++	.compact =	zbud_zpool_compact,
++	.compactable =	zbud_zpool_compactable,
+ };
+ 
+ MODULE_ALIAS("zpool-zbud");

@@ -1,0 +1,12 @@
+--- original/drivers/usb/host/ohci-hcd.c	2020-05-07 08:06:18.844217059 +0200
++++ changed/drivers/usb/host/ohci-hcd.c	2019-06-03 13:39:52.000000000 +0200
+@@ -443,7 +443,8 @@ static int ohci_init (struct ohci_hcd *o
+ 	struct usb_hcd *hcd = ohci_to_hcd(ohci);
+ 
+ 	/* Accept arbitrarily long scatter-gather lists */
+-	hcd->self.sg_tablesize = ~0;
++	if (!(hcd->driver->flags & HCD_LOCAL_MEM))
++		hcd->self.sg_tablesize = ~0;
+ 
+ 	if (distrust_firmware)
+ 		ohci->flags |= OHCI_QUIRK_HUB_POWER;

@@ -1,0 +1,9 @@
+--- original/security/integrity/Kconfig	2020-05-07 08:06:23.790168459 +0200
++++ changed/security/integrity/Kconfig	2019-06-03 13:39:54.000000000 +0200
+@@ -58,5 +58,6 @@ config INTEGRITY_AUDIT
+ 
+ source security/integrity/ima/Kconfig
+ source security/integrity/evm/Kconfig
++source security/integrity/five/Kconfig
+ 
+ endif   # if INTEGRITY

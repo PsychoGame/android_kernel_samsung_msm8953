@@ -1,0 +1,22 @@
+--- original/drivers/media/platform/msm/camera_v2/camera/camera.c	2020-05-07 11:40:16.511313628 +0200
++++ changed/drivers/media/platform/msm/camera_v2/camera/camera.c	2019-06-03 13:39:50.000000000 +0200
+@@ -458,9 +458,7 @@ static int camera_v4l2_subscribe_event(s
+ 	int rc = 0;
+ 	struct camera_v4l2_private *sp = fh_to_private(fh);
+ 
+-	mutex_lock(&sp->lock);
+ 	rc = v4l2_event_subscribe(&sp->fh, sub, 5, NULL);
+-	mutex_unlock(&sp->lock);
+ 
+ 	return rc;
+ }
+@@ -471,9 +469,7 @@ static int camera_v4l2_unsubscribe_event
+ 	int rc = 0;
+ 	struct camera_v4l2_private *sp = fh_to_private(fh);
+ 
+-	mutex_lock(&sp->lock);
+ 	rc = v4l2_event_unsubscribe(&sp->fh, sub);
+-	mutex_unlock(&sp->lock);
+ 
+ 	return rc;
+ }

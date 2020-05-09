@@ -1,0 +1,7 @@
+--- original/drivers/net/wireless/Makefile	2020-05-07 08:31:24.484798952 +0200
++++ changed/drivers/net/wireless/Makefile	2019-06-03 13:39:51.000000000 +0200
+@@ -68,3 +68,4 @@ obj-$(CONFIG_CNSS2)	+= cnss2/
+ obj-$(CONFIG_WCNSS_MEM_PRE_ALLOC) += cnss_prealloc/
+ obj-$(CONFIG_CNSS_CRYPTO)	+= cnss_crypto/
+ obj-$(CONFIG_CNSS_UTILS) += cnss_utils/
++obj-$(CONFIG_PRONTO_WLAN)  += prima/

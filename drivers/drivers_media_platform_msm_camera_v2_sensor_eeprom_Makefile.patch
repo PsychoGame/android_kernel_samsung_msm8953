@@ -1,0 +1,11 @@
+--- original/drivers/media/platform/msm/camera_v2/sensor/eeprom/Makefile	2020-05-07 08:06:13.145273058 +0200
++++ changed/drivers/media/platform/msm/camera_v2/sensor/eeprom/Makefile	2019-06-03 13:39:50.000000000 +0200
+@@ -3,3 +3,8 @@ ccflags-y += -Idrivers/media/platform/ms
+ ccflags-y += -Idrivers/media/platform/msm/camera_v2/sensor/io
+ ccflags-y += -Idrivers/media/platform/msm/camera_v2/sensor/cci
+ obj-$(CONFIG_MSM_EEPROM) += msm_eeprom.o
++obj-$(CONFIG_MSM_OTP) += msm_otp.o
++obj-$(CONFIG_MSM_FRONT_OTP) += msm_otp.o
++obj-$(CONFIG_GET_FRONT_MODULE_ID_OTP) += msm_otp.o
++obj-$(CONFIG_S5K5E3YX) += msm_otp.o
++obj-$(CONFIG_S5K5E9YX) += msm_otp.o

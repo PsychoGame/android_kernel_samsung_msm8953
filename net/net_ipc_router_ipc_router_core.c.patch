@@ -1,0 +1,10 @@
+--- original/net/ipc_router/ipc_router_core.c	2020-05-07 08:31:27.852768653 +0200
++++ changed/net/ipc_router/ipc_router_core.c	2019-06-03 13:39:54.000000000 +0200
+@@ -2836,6 +2836,7 @@ int msm_ipc_router_register_server(struc
+ 
+ 	if (!port_ptr || !name)
+ 		return -EINVAL;
++	
+ 
+ 	if (port_ptr->type != CLIENT_PORT)
+ 		return -EINVAL;

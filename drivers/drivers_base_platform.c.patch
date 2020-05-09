@@ -1,0 +1,11 @@
+--- original/drivers/base/platform.c	2020-05-07 08:31:21.271827858 +0200
++++ changed/drivers/base/platform.c	2019-06-03 13:39:49.000000000 +0200
+@@ -730,7 +730,7 @@ static ssize_t driver_override_store(str
+ 	char *driver_override, *old, *cp;
+ 
+ 	/* We need to keep extra room for a newline */
+-	if (count >= (PAGE_SIZE - 1))
++    if (count >= (PAGE_SIZE - 1))
+ 		return -EINVAL;
+ 
+ 	driver_override = kstrndup(buf, count, GFP_KERNEL);

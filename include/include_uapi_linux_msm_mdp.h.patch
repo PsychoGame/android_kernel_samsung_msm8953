@@ -1,0 +1,10 @@
+--- original/include/uapi/linux/msm_mdp.h	2020-05-07 08:06:21.912186912 +0200
++++ changed/include/uapi/linux/msm_mdp.h	2019-06-03 13:39:53.000000000 +0200
+@@ -70,6 +70,7 @@
+ #define MSMFB_LPM_ENABLE	_IOWR(MSMFB_IOCTL_MAGIC, 170, unsigned int)
+ #define MSMFB_MDP_PP_GET_FEATURE_VERSION _IOWR(MSMFB_IOCTL_MAGIC, 171, \
+ 					      struct mdp_pp_feature_version)
++#define MSMFB_DISABLE_CLOCK_GATE  _IOW(MSMFB_IOCTL_MAGIC, 172, unsigned int)
+ 
+ #define FB_TYPE_3D_PANEL 0x10101010
+ #define MDP_IMGTYPE2_START 0x10000

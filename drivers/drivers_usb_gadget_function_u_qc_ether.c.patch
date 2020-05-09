@@ -1,0 +1,13 @@
+--- original/drivers/usb/gadget/function/u_qc_ether.c	2020-05-07 08:31:25.926785980 +0200
++++ changed/drivers/usb/gadget/function/u_qc_ether.c	2019-06-03 13:39:52.000000000 +0200
+@@ -317,8 +317,8 @@ int gether_qc_setup_name(struct usb_gadg
+ 		dev_dbg(&g->dev, "register_netdev failed, %d\n", status);
+ 		free_netdev(net);
+ 	} else {
+-		INFO(dev, "MAC %pM\n", net->dev_addr);
+-		INFO(dev, "HOST MAC %pM\n", dev->host_mac);
++		INFO(dev, "MAC %pKM\n", net->dev_addr);
++		INFO(dev, "HOST MAC %pKM\n", dev->host_mac);
+ 
+ 	}
+ 

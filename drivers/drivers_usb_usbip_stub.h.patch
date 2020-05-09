@@ -1,0 +1,18 @@
+--- original/drivers/usb/usbip/stub.h	2020-05-07 08:06:19.183213728 +0200
++++ changed/drivers/usb/usbip/stub.h	2019-06-03 13:39:52.000000000 +0200
+@@ -88,6 +88,7 @@ struct bus_id_priv {
+ 	struct stub_device *sdev;
+ 	struct usb_device *udev;
+ 	char shutdown_busid;
++	spinlock_t busid_lock;
+ };
+ 
+ /* stub_priv is allocated from stub_priv_cache */
+@@ -98,6 +99,7 @@ extern struct usb_device_driver stub_dri
+ 
+ /* stub_main.c */
+ struct bus_id_priv *get_busid_priv(const char *busid);
++void put_busid_priv(struct bus_id_priv *bid);
+ int del_match_busid(char *busid);
+ void stub_device_cleanup_urbs(struct stub_device *sdev);
+ 

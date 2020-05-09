@@ -1,0 +1,8 @@
+--- original/drivers/usb/gadget/Makefile	2020-05-07 08:06:18.717218307 +0200
++++ changed/drivers/usb/gadget/Makefile	2019-06-03 13:39:52.000000000 +0200
+@@ -19,3 +19,5 @@ obj-$(CONFIG_USB_G_ANDROID)	+= g_android
+ obj-$(CONFIG_USB_CI13XXX_MSM)	+= ci13xxx_msm.o
+ 
+ obj-$(CONFIG_USB_CI13XXX_MSM_HSIC)	+= ci13xxx_msm_hsic.o
++
++obj-$(CONFIG_USB_ANDROID_SAMSUNG_COMPOSITE)	+= multi_config.o

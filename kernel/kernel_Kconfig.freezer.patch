@@ -1,0 +1,11 @@
+--- original/kernel/Kconfig.freezer	2020-05-07 08:06:22.052185536 +0200
++++ changed/kernel/Kconfig.freezer	2019-06-03 13:39:53.000000000 +0200
+@@ -1,2 +1,7 @@
+ config FREEZER
+ 	def_bool PM_SLEEP || CGROUP_FREEZER
++config OLAF_SUPPORT
++	bool "thaw frozen process when recieve sig"
++	default n
++	help
++		thaw frozen process when recieve sig. enable if samsung olaf solution exist
+\ Geen regeleindeteken (LF) aan einde van bestand

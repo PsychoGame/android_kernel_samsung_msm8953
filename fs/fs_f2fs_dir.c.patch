@@ -1,0 +1,12 @@
+--- original/fs/f2fs/dir.c	2020-05-07 08:51:35.218254230 +0200
++++ changed/fs/f2fs/dir.c	2019-06-03 13:39:53.000000000 +0200
+@@ -860,6 +860,9 @@ static int f2fs_readdir(struct file *fil
+ 		goto out_free;
+ 	}
+ 
++	if (IS_I_VERSION(inode) && file->f_version != inode->i_version)
++		file->f_version = inode->i_version;
++
+ 	for (; n < npages; n++, ctx->pos = n * NR_DENTRY_IN_BLOCK) {
+ 
+ 		/* allow readdir() to be interrupted */

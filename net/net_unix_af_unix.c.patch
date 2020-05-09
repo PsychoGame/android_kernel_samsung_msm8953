@@ -1,0 +1,20 @@
+--- original/net/unix/af_unix.c	2020-05-07 08:31:28.321764434 +0200
++++ changed/net/unix/af_unix.c	2019-06-03 13:39:54.000000000 +0200
+@@ -1469,7 +1469,7 @@ static void unix_detach_fds(struct scm_c
+ 	UNIXCB(skb).fp = NULL;
+ 
+ 	for (i = scm->fp->count-1; i >= 0; i--)
+-		unix_notinflight(scm->fp->fp[i]);
++		unix_notinflight(scm->fp->user, scm->fp->fp[i]);
+ }
+ 
+ static void unix_destruct_scm(struct sk_buff *skb)
+@@ -1534,7 +1534,7 @@ static int unix_attach_fds(struct scm_co
+ 		return -ENOMEM;
+ 
+ 	for (i = scm->fp->count - 1; i >= 0; i--)
+-		unix_inflight(scm->fp->fp[i]);
++		unix_inflight(scm->fp->user, scm->fp->fp[i]);
+ 	return max_level;
+ }
+ 

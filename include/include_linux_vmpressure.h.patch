@@ -1,0 +1,11 @@
+--- original/include/linux/vmpressure.h	2020-05-07 08:06:21.596190017 +0200
++++ changed/include/linux/vmpressure.h	2019-06-03 13:39:53.000000000 +0200
+@@ -12,7 +12,7 @@
+ struct vmpressure {
+ 	unsigned long scanned;
+ 	unsigned long reclaimed;
+-	unsigned long stall;
++	unsigned long pressure;
+ 	/* The lock is used to keep the scanned/reclaimed above in sync. */
+ 	struct spinlock sr_lock;
+ 

@@ -1,0 +1,29 @@
+--- original/kernel/sched/qhmp_core.c	2020-05-07 08:06:22.315182952 +0200
++++ changed/kernel/sched/qhmp_core.c	2019-06-03 13:39:54.000000000 +0200
+@@ -85,6 +85,8 @@
+ #include <asm/paravirt.h>
+ #endif
+ 
++#include <linux/sec_debug.h>
++
+ #include "qhmp_sched.h"
+ #include "../workqueue_internal.h"
+ #include "../smpboot.h"
+@@ -4185,6 +4187,7 @@ context_switch(struct rq *rq, struct tas
+ 	struct mm_struct *mm, *oldmm;
+ 
+ 	prepare_task_switch(rq, prev, next);
++	sec_debug_task_sched_log(smp_processor_id(), next, prev);
+ 
+ 	mm = next->mm;
+ 	oldmm = prev->active_mm;
+@@ -8923,6 +8926,9 @@ void __init sched_init(void)
+ 	int i, j;
+ 	unsigned long alloc_size = 0, ptr;
+ 
++	sec_gaf_supply_rqinfo(offsetof(struct rq, curr),
++			offsetof(struct cfs_rq, rq));
++
+ 	if (sched_enable_hmp)
+ 		pr_info("HMP scheduling enabled.\n");
+ 

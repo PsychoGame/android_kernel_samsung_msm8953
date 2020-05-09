@@ -1,0 +1,10 @@
+--- original/drivers/media/platform/msm/vidc/msm_vidc_debug.h	2020-05-07 08:06:13.207272449 +0200
++++ changed/drivers/media/platform/msm/vidc/msm_vidc_debug.h	2019-06-03 13:39:50.000000000 +0200
+@@ -127,6 +127,7 @@ struct dentry *msm_vidc_debugfs_init_ins
+ void msm_vidc_debugfs_deinit_inst(struct msm_vidc_inst *inst);
+ void msm_vidc_debugfs_update(struct msm_vidc_inst *inst,
+ 		enum msm_vidc_debugfs_event e);
++void msm_vidc_debugfs_deinit_drv(void);
+ 
+ static inline void tic(struct msm_vidc_inst *i, enum profiling_points p,
+ 				 char *b)

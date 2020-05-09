@@ -1,0 +1,13 @@
+--- original/drivers/video/msm/mdss/mdss_fb.h	2020-05-07 08:31:26.076784631 +0200
++++ changed/drivers/video/msm/mdss/mdss_fb.h	2019-06-03 13:39:53.000000000 +0200
+@@ -32,8 +32,10 @@
+ #define MSM_FB_MAX_DEV_LIST 32
+ 
+ #define MSM_FB_ENABLE_DBGFS
++
+ #define WAIT_FENCE_FIRST_TIMEOUT (3 * MSEC_PER_SEC)
+ #define WAIT_FENCE_FINAL_TIMEOUT (7 * MSEC_PER_SEC)
++
+ #define WAIT_MAX_FENCE_TIMEOUT (WAIT_FENCE_FIRST_TIMEOUT + \
+ 					WAIT_FENCE_FINAL_TIMEOUT)
+ #define WAIT_MIN_FENCE_TIMEOUT  (1)

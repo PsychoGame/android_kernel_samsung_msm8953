@@ -1,0 +1,18 @@
+--- original/fs/attr.c	2020-05-07 08:31:26.199783524 +0200
++++ changed/fs/attr.c	2019-06-03 13:39:53.000000000 +0200
+@@ -15,6 +15,7 @@
+ #include <linux/security.h>
+ #include <linux/evm.h>
+ #include <linux/ima.h>
++#include <linux/task_integrity.h>
+ 
+ /**
+  * inode_change_ok - check if attribute changes to an inode are allowed
+@@ -271,6 +272,7 @@ int notify_change2(struct vfsmount *mnt,
+ 
+ 	if (!error) {
+ 		fsnotify_change(dentry, ia_valid);
++		five_inode_post_setattr(current, dentry);
+ 		ima_inode_post_setattr(dentry);
+ 		evm_inode_post_setattr(dentry, ia_valid);
+ 	}

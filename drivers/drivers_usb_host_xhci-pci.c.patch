@@ -1,0 +1,12 @@
+--- original/drivers/usb/host/xhci-pci.c	2020-05-07 08:06:18.873216774 +0200
++++ changed/drivers/usb/host/xhci-pci.c	2019-06-03 13:39:52.000000000 +0200
+@@ -149,6 +149,9 @@ static void xhci_pci_quirks(struct devic
+ 		xhci->quirks |= XHCI_BROKEN_STREAMS;
+ 	}
+ 	if (pdev->vendor == PCI_VENDOR_ID_RENESAS &&
++			pdev->device == 0x0014)
++		xhci->quirks |= XHCI_TRUST_TX_LENGTH;
++	if (pdev->vendor == PCI_VENDOR_ID_RENESAS &&
+ 			pdev->device == 0x0015)
+ 		xhci->quirks |= XHCI_RESET_ON_RESUME;
+ 	if (pdev->vendor == PCI_VENDOR_ID_VIA)

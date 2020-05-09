@@ -1,0 +1,33 @@
+--- original/drivers/video/msm/mdss/mdss_dsi_cmd.c	2020-05-07 08:06:19.457211035 +0200
++++ changed/drivers/video/msm/mdss/mdss_dsi_cmd.c	2019-06-03 13:39:53.000000000 +0200
+@@ -777,6 +777,13 @@ int mdss_dsi_cmdlist_put(struct mdss_dsi
+ 	pr_debug("%s: tot=%d put=%d get=%d\n", __func__,
+ 		clist->tot, clist->put, clist->get);
+ 
++#if defined(CONFIG_FB_MSM_MDSS_SAMSUNG)
++	if (req->flags & CMD_REQ_BROADCAST) {
++		ctrl->cmd_sync_wait_broadcast = true;
++		ctrl->cmd_sync_wait_trigger = true;
++	}
++#endif
++
+ 	mutex_unlock(&ctrl->cmdlist_mutex);
+ 
+ 	if (req->flags & CMD_REQ_COMMIT) {
+@@ -785,8 +792,15 @@ int mdss_dsi_cmdlist_put(struct mdss_dsi
+ 		else
+ 			ret = ctrl->cmdlist_commit(ctrl, 0);
+ 	}
++
++#if defined(CONFIG_FB_MSM_MDSS_SAMSUNG)
++	if (req->flags & CMD_REQ_BROADCAST) {
++		ctrl->cmd_sync_wait_broadcast = false;
++		ctrl->cmd_sync_wait_trigger = false;
++	}
++#endif
++
+ 	mutex_unlock(&ctrl->cmd_mutex);
+ 
+ 	return ret;
+ }
+-

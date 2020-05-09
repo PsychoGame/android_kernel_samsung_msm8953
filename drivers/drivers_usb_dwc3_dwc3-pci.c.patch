@@ -1,0 +1,11 @@
+--- original/drivers/usb/dwc3/dwc3-pci.c	2020-05-07 08:06:18.709218385 +0200
++++ changed/drivers/usb/dwc3/dwc3-pci.c	2019-06-03 13:39:52.000000000 +0200
+@@ -143,7 +143,7 @@ static int dwc3_pci_probe(struct pci_dev
+ 	ret = platform_device_add_resources(dwc3, res, ARRAY_SIZE(res));
+ 	if (ret) {
+ 		dev_err(dev, "couldn't add resources to dwc3 device\n");
+-		return ret;
++		goto err3;
+ 	}
+ 
+ 	pci_set_drvdata(pci, glue);

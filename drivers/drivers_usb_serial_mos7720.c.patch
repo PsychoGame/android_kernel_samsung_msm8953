@@ -1,0 +1,21 @@
+--- original/drivers/usb/serial/mos7720.c	2020-05-07 08:06:19.105214494 +0200
++++ changed/drivers/usb/serial/mos7720.c	2019-06-03 13:39:52.000000000 +0200
+@@ -236,11 +236,16 @@ static int read_mos_reg(struct usb_seria
+ 
+ 	status = usb_control_msg(usbdev, pipe, request, requesttype, value,
+ 				     index, buf, 1, MOS_WDR_TIMEOUT);
+-	if (status == 1)
++	if (status == 1) {
+ 		*data = *buf;
+-	else if (status < 0)
++	} else {
+ 		dev_err(&usbdev->dev,
+ 			"mos7720: usb_control_msg() failed: %d\n", status);
++		if (status >= 0)
++			status = -EIO;
++		*data = 0;
++	}
++
+ 	kfree(buf);
+ 
+ 	return status;

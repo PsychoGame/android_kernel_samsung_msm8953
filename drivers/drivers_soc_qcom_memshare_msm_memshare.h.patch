@@ -1,0 +1,15 @@
+--- original/drivers/soc/qcom/memshare/msm_memshare.h	2020-05-07 08:06:17.647228820 +0200
++++ changed/drivers/soc/qcom/memshare/msm_memshare.h	2019-06-03 13:39:52.000000000 +0200
+@@ -25,6 +25,12 @@
+ #define CHECK	0
+ #define FREE	1
+ 
++#ifdef CONFIG_SEC_BSP
++#define DIAG	1
++#define FTM	2
++#define VENDOR	3
++#endif
++
+ struct mem_blocks {
+ 	/* Client Id information */
+ 	uint32_t client_id;

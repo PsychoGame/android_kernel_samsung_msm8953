@@ -1,0 +1,16 @@
+--- original/net/bluetooth/Makefile	2020-05-07 08:06:22.773178452 +0200
++++ changed/net/bluetooth/Makefile	2019-06-03 13:39:54.000000000 +0200
+@@ -3,10 +3,10 @@
+ #
+ 
+ obj-$(CONFIG_BT)	+= bluetooth.o
+-obj-$(CONFIG_BT_RFCOMM)	+= rfcomm/
+-obj-$(CONFIG_BT_BNEP)	+= bnep/
++#obj-$(CONFIG_BT_RFCOMM)	+= rfcomm/
++#obj-$(CONFIG_BT_BNEP)	+= bnep/
+ obj-$(CONFIG_BT_CMTP)	+= cmtp/
+-obj-$(CONFIG_BT_HIDP)	+= hidp/
++#obj-$(CONFIG_BT_HIDP)	+= hidp/
+ obj-$(CONFIG_BT_6LOWPAN) += bluetooth_6lowpan.o
+ 
+ bluetooth_6lowpan-y := 6lowpan.o

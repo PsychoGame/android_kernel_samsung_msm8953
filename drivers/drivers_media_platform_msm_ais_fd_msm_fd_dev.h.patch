@@ -1,0 +1,10 @@
+--- original/drivers/media/platform/msm/ais/fd/msm_fd_dev.h	2020-05-07 08:31:23.568807193 +0200
++++ changed/drivers/media/platform/msm/ais/fd/msm_fd_dev.h	2019-06-03 13:39:50.000000000 +0200
+@@ -161,7 +161,6 @@ struct fd_ctx {
+ 	struct msm_fd_mem_pool mem_pool;
+ 	struct msm_fd_stats *stats;
+ 	struct msm_fd_buf_handle work_buf;
+-	struct mutex lock;
+ };
+ 
+ /*

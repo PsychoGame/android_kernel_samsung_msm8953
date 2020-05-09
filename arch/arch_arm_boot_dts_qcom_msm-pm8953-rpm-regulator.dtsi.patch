@@ -1,0 +1,25 @@
+--- original/arch/arm/boot/dts/qcom/msm-pm8953-rpm-regulator.dtsi	2020-05-07 08:06:05.286350281 +0200
++++ changed/arch/arm/boot/dts/qcom/msm-pm8953-rpm-regulator.dtsi	2019-06-03 13:39:48.000000000 +0200
+@@ -284,6 +284,22 @@
+ 		};
+ 	};
+ 
++	rpm-regulator-ldoa15 {
++		compatible = "qcom,rpm-smd-regulator-resource";
++		qcom,resource-name = "ldoa";
++		qcom,resource-id = <15>;
++		qcom,regulator-type = <0>;
++		qcom,hpm-min-load = <5000>;
++		status = "disabled";
++
++		regulator-l15 {
++			compatible = "qcom,rpm-smd-regulator";
++			regulator-name = "pm8953_l15";
++			qcom,set = <3>;
++			status = "disabled";
++		};
++	};
++
+ 	rpm-regulator-ldoa16 {
+ 		compatible = "qcom,rpm-smd-regulator-resource";
+ 		qcom,resource-name = "ldoa";

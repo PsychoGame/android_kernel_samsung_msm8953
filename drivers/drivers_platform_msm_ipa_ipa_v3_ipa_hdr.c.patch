@@ -1,0 +1,11 @@
+--- original/drivers/platform/msm/ipa/ipa_v3/ipa_hdr.c	2020-05-07 08:31:24.785796245 +0200
++++ changed/drivers/platform/msm/ipa/ipa_v3/ipa_hdr.c	2019-06-03 13:39:52.000000000 +0200
+@@ -652,7 +652,7 @@ static int __ipa3_del_hdr_proc_ctx(u32 p
+ 	}
+ 
+ 	if (release_hdr)
+-		__ipa3_del_hdr(entry->hdr->id, false);
++		__ipa3_release_hdr(entry->hdr->id);
+ 
+ 	/* move the offset entry to appropriate free list */
+ 	list_move(&entry->offset_entry->link,

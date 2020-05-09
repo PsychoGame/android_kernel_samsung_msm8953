@@ -1,0 +1,20 @@
+--- original/include/net/xfrm.h	2020-05-07 08:31:27.189774618 +0200
++++ changed/include/net/xfrm.h	2019-06-03 13:39:53.000000000 +0200
+@@ -696,7 +696,8 @@ struct xfrm_spi_skb_cb {
+ 
+ #define XFRM_SPI_SKB_CB(__skb) ((struct xfrm_spi_skb_cb *)&((__skb)->cb[0]))
+ 
+-#ifdef CONFIG_AUDITSYSCALL
++// [ SEC_SELINUX_PORTING_COMMON - remove AUDIT_MAC_IPSEC_EVENT audit log, it conflict with security notification
++#if 0 // #ifdef CONFIG_AUDITSYSCALL
+ static inline struct audit_buffer *xfrm_audit_start(const char *op)
+ {
+ 	struct audit_buffer *audit_buf = NULL;
+@@ -785,6 +786,7 @@ static inline void xfrm_audit_state_icvf
+ {
+ }
+ #endif /* CONFIG_AUDITSYSCALL */
++// ] SEC_SELINUX_PORTING_COMMON - remove AUDIT_MAC_IPSEC_EVENT audit log, it conflict with security notification
+ 
+ static inline void xfrm_pol_hold(struct xfrm_policy *policy)
+ {

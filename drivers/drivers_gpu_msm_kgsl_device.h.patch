@@ -1,0 +1,10 @@
+--- original/drivers/gpu/msm/kgsl_device.h	2020-05-07 11:14:53.785791205 +0200
++++ changed/drivers/gpu/msm/kgsl_device.h	2019-06-03 13:39:50.000000000 +0200
+@@ -376,6 +376,7 @@ struct kgsl_context {
+ 	struct kgsl_pwr_constraint pwr_constraint;
+ 	unsigned int fault_count;
+ 	unsigned long fault_time;
++	u64 timers[3];
+ };
+ 
+ #define _context_comm(_c) \

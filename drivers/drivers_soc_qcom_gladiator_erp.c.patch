@@ -1,0 +1,84 @@
+--- original/drivers/soc/qcom/gladiator_erp.c	2020-05-07 08:06:17.630228988 +0200
++++ changed/drivers/soc/qcom/gladiator_erp.c	2019-06-03 13:39:52.000000000 +0200
+@@ -19,6 +19,9 @@
+ #include <linux/cpu_pm.h>
+ #include <linux/platform_device.h>
+ #include <soc/qcom/scm.h>
++#ifdef CONFIG_SEC_AP_HEALTH
++#include <linux/sec_param.h>
++#endif
+ 
+ #define MODULE_NAME "gladiator_error_reporting"
+ 
+@@ -127,6 +130,48 @@ enum err_log {
+ 	STALLEN,
+ };
+ 
++#ifdef CONFIG_SEC_AP_HEALTH
++static ap_health_t *p_health;
++
++static int update_gladiator_err_count(int gld, int obsrv)
++{
++	if (!p_health)
++		p_health = ap_health_data_read();
++
++	if (p_health) {
++		if (gld) {
++			p_health->cache.gld_err_cnt++;
++			p_health->daily_cache.gld_err_cnt++;
++		}
++		if (obsrv) {
++			p_health->cache.obsrv_err_cnt++;
++			p_health->daily_cache.obsrv_err_cnt++;
++		}
++		ap_health_data_write(p_health);
++	}
++		
++	return 0;
++}
++
++static int gladiator_sec_param_notifier_callback(
++	struct notifier_block *nfb, unsigned long action, void *data)
++{
++	switch (action) {
++		case SEC_PARAM_DRV_INIT_DONE:
++			p_health = ap_health_data_read();
++			break;
++		default:
++			return NOTIFY_DONE;
++	}
++
++	return NOTIFY_OK;
++}
++
++static struct notifier_block gladiator_sec_param_notifier = {
++	.notifier_call = gladiator_sec_param_notifier_callback,
++};
++#endif /* CONFIG_SEC_AP_HEALTH */
++
+ static void clear_gladiator_error(void __iomem *gladiator_virt_base)
+ {
+ 	writel_relaxed(1, gladiator_virt_base + GLADIATOR_ERRCLR);
+@@ -458,6 +503,11 @@ static irqreturn_t msm_gladiator_isr(int
+ 		return IRQ_HANDLED;
+ 	}
+ 	pr_alert("GLADIATOR ERROR DETECTED\n");
++
++#ifdef CONFIG_SEC_AP_HEALTH
++	update_gladiator_err_count(gld_err_valid,obsrv_err_valid);
++#endif
++
+ 	pr_alert("GLADIATOR error log register data:\n");
+ 	for (err_log = ERR_LOG0; err_log <= ERR_LOG8; err_log++) {
+ 		/* skip log register 7 as its reserved */
+@@ -612,6 +662,10 @@ static int init_gladiator_erp(void)
+ 		return -ENODEV;
+ 	}
+ 
++#ifdef CONFIG_SEC_AP_HEALTH
++	sec_param_notifier_register(&gladiator_sec_param_notifier);
++#endif
++
+ 	return platform_driver_register(&gladiator_erp_driver);
+ }
+ 

@@ -1,0 +1,11 @@
+--- original/drivers/usb/storage/uas-detect.h	2020-05-07 08:31:25.991785395 +0200
++++ changed/drivers/usb/storage/uas-detect.h	2019-06-03 13:39:52.000000000 +0200
+@@ -10,7 +10,7 @@ static int uas_is_interface(struct usb_h
+ }
+ 
+ static struct usb_host_interface *uas_find_uas_alt_setting(
+-		struct usb_interface *intf)
++	struct usb_interface *intf)
+ {
+ 	int i;
+ 

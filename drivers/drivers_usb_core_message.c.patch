@@ -1,0 +1,13 @@
+--- original/drivers/usb/core/message.c	2020-05-07 08:06:18.685218621 +0200
++++ changed/drivers/usb/core/message.c	2019-06-03 13:39:52.000000000 +0200
+@@ -147,6 +147,10 @@ int usb_control_msg(struct usb_device *d
+ 
+ 	ret = usb_internal_control_msg(dev, pipe, dr, data, size, timeout);
+ 
++	/* Linger a bit, prior to the next control message. */
++	if (dev->quirks & USB_QUIRK_DELAY_CTRL_MSG)
++		msleep(200);
++
+ 	kfree(dr);
+ 
+ 	return ret;

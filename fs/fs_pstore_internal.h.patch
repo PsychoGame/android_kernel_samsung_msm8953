@@ -1,0 +1,15 @@
+--- original/fs/pstore/internal.h	2020-05-07 08:06:20.581199991 +0200
++++ changed/fs/pstore/internal.h	2019-06-03 13:39:53.000000000 +0200
+@@ -51,6 +51,12 @@ extern void pstore_register_pmsg(void);
+ static inline void pstore_register_pmsg(void) {}
+ #endif
+ 
++#ifdef CONFIG_PSTORE_PMSG_SSPLOG
++extern int ss_hook_pmsg(char *buffer, size_t count);
++#else
++static inline int ss_hook_pmsg(char *buffer, size_t count) {return 0;}
++#endif
++
+ extern struct pstore_info *psinfo;
+ 
+ extern void	pstore_set_kmsg_bytes(int);

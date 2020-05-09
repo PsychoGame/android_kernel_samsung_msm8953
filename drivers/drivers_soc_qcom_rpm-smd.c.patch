@@ -1,0 +1,13 @@
+--- original/drivers/soc/qcom/rpm-smd.c	2020-05-07 08:31:25.328791360 +0200
++++ changed/drivers/soc/qcom/rpm-smd.c	2019-06-03 13:39:52.000000000 +0200
+@@ -1281,7 +1281,9 @@ static int msm_rpm_send_data(struct msm_
+ 		return ret;
+ 	}
+ 
+-	msm_rpm_add_wait_list(cdata->msg_hdr.msg_id, noack);
++	ret = msm_rpm_add_wait_list(cdata->msg_hdr.msg_id, noack);
++	if (ret)
++		return ret;
+ 
+ 	ret = msm_rpm_send_buffer(&cdata->buf[0], msg_size, noirq);
+ 

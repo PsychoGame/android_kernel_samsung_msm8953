@@ -1,0 +1,23 @@
+--- original/drivers/gpu/msm/adreno.c	2020-05-07 08:31:22.945812798 +0200
++++ changed/drivers/gpu/msm/adreno.c	2019-06-03 13:39:50.000000000 +0200
+@@ -42,6 +42,10 @@
+ /* Include the master list of GPU cores that are supported */
+ #include "adreno-gpulist.h"
+ 
++#if defined(CONFIG_SEC_ABC)
++#include <linux/sti/abc_common.h>
++#endif
++
+ #undef MODULE_PARAM_PREFIX
+ #define MODULE_PARAM_PREFIX "adreno."
+ 
+@@ -561,6 +565,9 @@ void adreno_hang_int_callback(struct adr
+ {
+ 	KGSL_DRV_CRIT_RATELIMIT(KGSL_DEVICE(adreno_dev),
+ 			"MISC: GPU hang detected\n");
++#if defined(CONFIG_SEC_ABC)
++	sec_abc_send_event("MODULE=gpu_qc@ERROR=gpu_fault");
++#endif
+ 	adreno_irqctrl(adreno_dev, 0);
+ 
+ 	/* Trigger a fault in the dispatcher - this will effect a restart */

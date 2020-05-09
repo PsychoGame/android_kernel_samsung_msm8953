@@ -1,0 +1,11 @@
+--- original/drivers/usb/gadget/function/f_uac2.c	2020-05-07 08:31:25.908786142 +0200
++++ changed/drivers/usb/gadget/function/f_uac2.c	2019-06-03 13:39:52.000000000 +0200
+@@ -1547,6 +1547,8 @@ afunc_bind(struct usb_configuration *cfg
+ 		dev_err(dev, "%s:%d Error!\n", __func__, __LINE__);
+ 		return ret;
+ 	}
++	iad_desc.bFirstInterface = ret;
++
+ 	std_ac_if_desc.bInterfaceNumber = ret;
+ 	iad_desc.bFirstInterface = ret;
+ 	agdev->ac_intf = ret;

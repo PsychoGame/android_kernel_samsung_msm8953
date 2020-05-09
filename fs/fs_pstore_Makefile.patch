@@ -1,0 +1,10 @@
+--- original/fs/pstore/Makefile	2020-05-07 08:06:20.580200000 +0200
++++ changed/fs/pstore/Makefile	2019-06-03 13:39:53.000000000 +0200
+@@ -8,6 +8,7 @@ pstore-objs += inode.o platform.o
+ obj-$(CONFIG_PSTORE_FTRACE)	+= ftrace.o
+ 
+ obj-$(CONFIG_PSTORE_PMSG)	+= pmsg.o
++obj-$(CONFIG_PSTORE_PMSG_SSPLOG)	+= ss_platform_log.o
+ 
+ ramoops-objs += ram.o ram_core.o
+ obj-$(CONFIG_PSTORE_RAM)	+= ramoops.o

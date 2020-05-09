@@ -1,0 +1,10 @@
+--- original/drivers/usb/dwc3/Makefile	2020-05-07 08:06:18.701218464 +0200
++++ changed/drivers/usb/dwc3/Makefile	2019-06-03 13:39:52.000000000 +0200
+@@ -38,5 +38,6 @@ obj-$(CONFIG_USB_DWC3_EXYNOS)		+= dwc3-e
+ obj-$(CONFIG_USB_DWC3_PCI)		+= dwc3-pci.o
+ obj-$(CONFIG_USB_DWC3_KEYSTONE)		+= dwc3-keystone.o
+ obj-$(CONFIG_USB_DWC3_QCOM)		+= dwc3-qcom.o
+-obj-$(CONFIG_USB_DWC3_MSM)		+= dwc3-msm.o dbm.o
++obj-$(CONFIG_USB_DWC3_MSM)		+= dbm.o
++obj-$(CONFIG_USB_DWC3_MSM)		+= dwc3-msm.o
+ obj-$(CONFIG_USB_DWC3_ST)		+= dwc3-st.o

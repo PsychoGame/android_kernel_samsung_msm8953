@@ -1,0 +1,12 @@
+--- original/include/scsi/scsi_host.h	2020-05-07 08:06:21.742188582 +0200
++++ changed/include/scsi/scsi_host.h	2019-06-03 13:39:53.000000000 +0200
+@@ -750,6 +750,9 @@ struct Scsi_Host {
+ 	 * Needed just in case we have virtual hosts.
+ 	 */
+ 	struct device *dma_dev;
++#ifdef CONFIG_USB_STORAGE_DETECT
++	unsigned int  by_usb;
++#endif
+ 
+ 	/*
+ 	 * We should ensure that this is aligned, both for better performance

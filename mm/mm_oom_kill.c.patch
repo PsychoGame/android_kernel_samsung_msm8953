@@ -1,0 +1,15 @@
+--- original/mm/oom_kill.c	2020-05-07 08:06:22.562180525 +0200
++++ changed/mm/oom_kill.c	2019-06-03 13:39:53.000000000 +0200
+@@ -398,8 +398,11 @@ static void dump_header(struct task_stru
+ 	dump_stack();
+ 	if (memcg)
+ 		mem_cgroup_print_oom_info(memcg, p);
+-	else
++	else {
++		show_mem_extra_call_notifiers();
+ 		show_mem(SHOW_MEM_FILTER_NODES);
++	}
++
+ 	if (sysctl_oom_dump_tasks)
+ 		dump_tasks(memcg, nodemask);
+ }

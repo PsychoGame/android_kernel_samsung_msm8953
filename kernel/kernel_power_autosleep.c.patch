@@ -1,0 +1,13 @@
+--- original/kernel/power/autosleep.c	2020-05-07 08:06:22.201184072 +0200
++++ changed/kernel/power/autosleep.c	2019-06-03 13:39:53.000000000 +0200
+@@ -102,6 +102,10 @@ int pm_autosleep_set_state(suspend_state
+ 
+ 	__pm_relax(autosleep_ws);
+ 
++#ifdef CONFIG_SEC_PM_DEBUG
++	wakeup_sources_stats_active();
++#endif
++
+ 	if (state > PM_SUSPEND_ON) {
+ 		pm_wakep_autosleep_enabled(true);
+ 		queue_up_suspend_work();

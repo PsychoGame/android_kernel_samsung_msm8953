@@ -1,0 +1,8 @@
+--- original/security/integrity/Makefile	2020-05-07 08:06:23.790168459 +0200
++++ changed/security/integrity/Makefile	2019-06-03 13:39:54.000000000 +0200
+@@ -13,3 +13,5 @@ subdir-$(CONFIG_IMA)			+= ima
+ obj-$(CONFIG_IMA)			+= ima/
+ subdir-$(CONFIG_EVM)			+= evm
+ obj-$(CONFIG_EVM)			+= evm/
++subdir-$(CONFIG_FIVE)			+= five
++obj-$(CONFIG_FIVE)			+= five/

@@ -1,0 +1,8 @@
+--- original/drivers/staging/Makefile	2020-05-07 08:06:17.750227808 +0200
++++ changed/drivers/staging/Makefile	2019-06-03 13:39:52.000000000 +0200
+@@ -45,3 +45,5 @@ obj-$(CONFIG_MTD_SPINAND_MT29F)	+= mt29f
+ obj-$(CONFIG_GS_FPGABOOT)	+= gs_fpgaboot/
+ obj-$(CONFIG_CRYPTO_SKEIN)	+= skein/
+ obj-$(CONFIG_UNISYSSPAR)	+= unisys/
++obj-$(CONFIG_SEC_STI)		+= sti/
++obj-$(CONFIG_VNSWAP)		+= vnswap/

@@ -1,0 +1,11 @@
+--- original/sound/soc/msm/qdsp6v2/msm-pcm-q6-v2.c	2020-05-07 08:31:28.732760736 +0200
++++ changed/sound/soc/msm/qdsp6v2/msm-pcm-q6-v2.c	2019-06-03 13:39:55.000000000 +0200
+@@ -466,7 +466,7 @@ static int msm_pcm_capture_prepare(struc
+ 		case (Q6_SUBSYS_AVS2_8):
+ 			ret = q6asm_open_read_v4(prtd->audio_client,
+ 					FORMAT_LINEAR_PCM,
+-					bits_per_sample);
++					bits_per_sample, false);
+ 
+ 			break;
+ 		case (Q6_SUBSYS_INVALID):

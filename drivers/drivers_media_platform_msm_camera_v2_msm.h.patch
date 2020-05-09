@@ -1,0 +1,11 @@
+--- original/drivers/media/platform/msm/camera_v2/msm.h	2020-05-07 08:31:23.676806221 +0200
++++ changed/drivers/media/platform/msm/camera_v2/msm.h	2019-06-03 13:39:50.000000000 +0200
+@@ -33,7 +33,7 @@
+  * backend will operate @ .6fps in certain usecases
+  * like Long exposure usecase and isp needs max of 2 frames
+  * to stop the hardware which will be around 3 seconds*/
+-#define MSM_POST_EVT_TIMEOUT 10000
++#define MSM_POST_EVT_TIMEOUT 60000
+ #define MSM_POST_EVT_NOTIMEOUT 0xFFFFFFFF
+ #define MSM_CAMERA_STREAM_CNT_BITS  32
+ 

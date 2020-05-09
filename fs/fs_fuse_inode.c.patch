@@ -1,0 +1,15 @@
+--- original/fs/fuse/inode.c	2020-05-07 08:31:26.480780996 +0200
++++ changed/fs/fuse/inode.c	2019-06-03 13:39:53.000000000 +0200
+@@ -911,6 +911,12 @@ static void process_init_reply(struct fu
+ 				pr_info("FUSE: SHORTCIRCUIT enabled [%s : %d]!\n",
+ 					current->comm, current->pid);
+ 			}
++			if (arg->flags & FUSE_RESERVE_SPACE) {
++				fc->reserved_space_mb = arg->reserved_space_mb;
++				pr_info("FUSE: RESERVE_SPACE enabled [%s : %d]! %u\n",
++						current->comm, current->pid,
++						arg->reserved_space_mb);
++			}
+ 			if (arg->time_gran && arg->time_gran <= 1000000000)
+ 				fc->sb->s_time_gran = arg->time_gran;
+ 		} else {

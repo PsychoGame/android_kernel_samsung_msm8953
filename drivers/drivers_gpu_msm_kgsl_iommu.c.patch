@@ -1,0 +1,22 @@
+--- original/drivers/gpu/msm/kgsl_iommu.c	2020-05-07 08:31:22.970812573 +0200
++++ changed/drivers/gpu/msm/kgsl_iommu.c	2019-06-03 13:39:50.000000000 +0200
+@@ -35,6 +35,9 @@
+ #include "kgsl_trace.h"
+ #include "kgsl_cffdump.h"
+ #include "kgsl_pwrctrl.h"
++#if defined(CONFIG_SEC_ABC)
++#include <linux/sti/abc_common.h>
++#endif
+ 
+ #define _IOMMU_PRIV(_mmu) (&((_mmu)->priv.iommu))
+ 
+@@ -841,6 +844,9 @@ static int kgsl_iommu_fault_handler(stru
+ 			else
+ 				KGSL_LOG_DUMP(ctx->kgsldev, "*EMPTY*\n");
+ 		}
++#if defined(CONFIG_SEC_ABC)
++		sec_abc_send_event("MODULE=gpu_qc@ERROR=gpu_page_fault");
++#endif
+ 	}
+ 
+ 

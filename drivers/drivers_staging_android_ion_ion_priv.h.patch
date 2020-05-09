@@ -1,0 +1,17 @@
+--- original/drivers/staging/android/ion/ion_priv.h	2020-05-07 08:31:25.465790127 +0200
++++ changed/drivers/staging/android/ion/ion_priv.h	2019-06-03 13:39:52.000000000 +0200
+@@ -201,6 +201,7 @@ struct ion_heap {
+ 
+ 	int (*debug_show)(struct ion_heap *heap, struct seq_file *, void *);
+ 	atomic_long_t total_allocated;
++	atomic_long_t total_allocated_peak;
+ 	atomic_long_t total_handles;
+ };
+ 
+@@ -508,4 +509,6 @@ struct ion_handle *ion_handle_get_by_id(
+ 
+ int ion_handle_put(struct ion_handle *handle);
+ 
++void show_ion_system_heap_size(struct seq_file *s);
++void show_ion_system_heap_pool_size(struct seq_file *s);
+ #endif /* _ION_PRIV_H */

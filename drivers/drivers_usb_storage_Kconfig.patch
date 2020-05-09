@@ -1,0 +1,12 @@
+--- original/drivers/usb/storage/Kconfig	2020-05-07 08:06:19.146214091 +0200
++++ changed/drivers/usb/storage/Kconfig	2019-06-03 13:39:52.000000000 +0200
+@@ -212,3 +212,9 @@ config USB_UAS
+ 	  say 'Y' or 'M' here and the kernel will use the right driver.
+ 
+ 	  If you compile this driver as a module, it will be named uas.
++
++config USB_STORAGE_DETECT
++	bool "Detect inserting sdcard"
++	depends on USB
++	help
++	  This is samsung patch

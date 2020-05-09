@@ -1,0 +1,11 @@
+--- original/sound/soc/msm/apq8084.c	2020-05-07 08:06:24.465161826 +0200
++++ changed/sound/soc/msm/apq8084.c	2019-06-03 13:39:55.000000000 +0200
+@@ -3056,7 +3056,7 @@ static struct snd_soc_dai_link apq8084_c
+ 		.name = "APQ8084 Compr8",
+ 		.stream_name = "COMPR8",
+ 		.cpu_dai_name	= "MultiMedia8",
+-		.platform_name  = "msm-compr-dsp",
++		.platform_name  = "msm-compress-dsp",
+ 		.dynamic = 1,
+ 		.dpcm_playback = 1,
+ 		.dpcm_capture = 1,

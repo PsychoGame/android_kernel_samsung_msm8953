@@ -1,0 +1,13 @@
+--- original/net/wireless/Kconfig	2020-05-07 08:06:23.621170119 +0200
++++ changed/net/wireless/Kconfig	2019-06-03 13:39:54.000000000 +0200
+@@ -182,6 +182,10 @@ config CFG80211_WEXT
+ 	  Enable this option if you need old userspace for wireless
+ 	  extensions with cfg80211-based drivers.
+ 
++config DBTXT_VARIATION
++	int "use the db.txt_variation"
++	default 0
++
+ config LIB80211
+ 	tristate
+ 	default n

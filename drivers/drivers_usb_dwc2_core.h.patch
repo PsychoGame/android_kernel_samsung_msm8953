@@ -1,0 +1,11 @@
+--- original/drivers/usb/dwc2/core.h	2020-05-07 08:06:18.691218562 +0200
++++ changed/drivers/usb/dwc2/core.h	2019-06-03 13:39:52.000000000 +0200
+@@ -144,7 +144,7 @@ struct s3c_hsotg_ep {
+ 	unsigned char           dir_in;
+ 	unsigned char           index;
+ 	unsigned char           mc;
+-	unsigned char           interval;
++	u16                     interval;
+ 
+ 	unsigned int            halted:1;
+ 	unsigned int            periodic:1;

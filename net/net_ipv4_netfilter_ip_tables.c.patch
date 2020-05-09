@@ -1,0 +1,16 @@
+--- original/net/ipv4/netfilter/ip_tables.c	2020-05-07 11:40:16.668312128 +0200
++++ changed/net/ipv4/netfilter/ip_tables.c	2019-06-03 13:39:54.000000000 +0200
+@@ -1484,8 +1484,11 @@ check_compat_entry_size_and_hooks(struct
+ 		return -EINVAL;
+ 	}
+ 
+-	/* For purposes of check_entry casting the compat entry is fine */
+-	ret = check_entry((struct ipt_entry *)e);
++	if (!ip_checkentry(&e->ip))
++		return -EINVAL;
++
++	ret = xt_compat_check_entry_offsets(e, e->elems,
++					    e->target_offset, e->next_offset);
+ 	if (ret)
+ 		return ret;
+ 

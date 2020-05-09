@@ -1,0 +1,11 @@
+--- original/net/ipv6/raw.c	2020-05-07 08:31:27.973767564 +0200
++++ changed/net/ipv6/raw.c	2019-06-03 13:39:54.000000000 +0200
+@@ -492,7 +492,7 @@ static int rawv6_recvmsg(struct kiocb *i
+ 			goto csum_copy_err;
+ 		err = skb_copy_datagram_iovec(skb, 0, msg->msg_iov, copied);
+ 	} else {
+-		err = skb_copy_and_csum_datagram_iovec(skb, 0, msg->msg_iov);
++		err = skb_copy_and_csum_datagram_iovec(skb, 0, msg->msg_iov, copied);
+ 		if (err == -EINVAL)
+ 			goto csum_copy_err;
+ 	}

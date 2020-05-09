@@ -1,0 +1,11 @@
+--- original/drivers/video/msm/mdss/mdss.h	2020-05-07 08:31:26.052784847 +0200
++++ changed/drivers/video/msm/mdss/mdss.h	2019-06-03 13:39:53.000000000 +0200
+@@ -606,4 +606,8 @@ static inline bool mdss_has_quirk(struct
+ #define MDSS_REG_READ(mdata, offset) \
+ 		dss_reg_r(&mdata->mdss_io, offset, 0)
+ 
++#if defined(CONFIG_FB_MSM_MDSS_SAMSUNG)
++extern void mdss_dump_reg(const char *dump_name, u32 reg_dump_flag,
++		char *addr, int len, u32 **dump_mem, bool from_isr);
++#endif
+ #endif /* MDSS_H */

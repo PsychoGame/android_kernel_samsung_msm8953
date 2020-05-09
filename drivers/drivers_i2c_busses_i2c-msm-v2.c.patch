@@ -1,0 +1,11 @@
+--- original/drivers/i2c/busses/i2c-msm-v2.c	2020-05-07 10:56:07.909819328 +0200
++++ changed/drivers/i2c/busses/i2c-msm-v2.c	2019-06-03 13:39:50.000000000 +0200
+@@ -3024,7 +3024,7 @@ static int i2c_msm_init(void)
+ {
+ 	return platform_driver_register(&i2c_msm_driver);
+ }
+-subsys_initcall(i2c_msm_init);
++arch_initcall(i2c_msm_init);
+ 
+ static void i2c_msm_exit(void)
+ {

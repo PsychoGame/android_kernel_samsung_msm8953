@@ -1,0 +1,15 @@
+--- original/drivers/crypto/msm/qce50.c	2020-05-07 08:31:21.454826212 +0200
++++ changed/drivers/crypto/msm/qce50.c	2019-06-03 13:39:49.000000000 +0200
+@@ -4937,9 +4937,9 @@ int qce_aead_req(void *handle, struct qc
+ 		q_req->cryptlen = areq->cryptlen - authsize;
+ 
+ 	if ((q_req->cryptlen > UINT_MAX - areq->assoclen) ||
+-		(q_req->cryptlen + areq->assoclen > UINT_MAX - ivsize)) {
+-			pr_err("Integer overflow on total aead req length.\n");
+-			return -EINVAL;
++	    (q_req->cryptlen + areq->assoclen > UINT_MAX - ivsize)) {
++		pr_err("Integer overflow on total aead req length.\n");
++		return -EINVAL;
+ 	}
+ 
+ 	totallen = q_req->cryptlen + areq->assoclen + ivsize;

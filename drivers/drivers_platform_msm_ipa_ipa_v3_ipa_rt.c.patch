@@ -1,0 +1,20 @@
+--- original/drivers/platform/msm/ipa/ipa_v3/ipa_rt.c	2020-05-07 11:02:09.630857225 +0200
++++ changed/drivers/platform/msm/ipa/ipa_v3/ipa_rt.c	2019-06-03 13:39:52.000000000 +0200
+@@ -1720,7 +1720,7 @@ int ipa3_reset_rt(enum ipa_ip_type ip, b
+ 				list_del(&rule->link);
+ 				if (rule->hdr) {
+ 					hdr_entry = ipa3_id_find(
+-							rule->rule.hdr_hdl);
++						rule->rule.hdr_hdl);
+ 					if (!hdr_entry ||
+ 					hdr_entry->cookie != IPA_HDR_COOKIE) {
+ 						IPAERR_RL(
+@@ -1738,7 +1738,7 @@ int ipa3_reset_rt(enum ipa_ip_type ip, b
+ 						"Proc entry already deleted\n");
+ 						return -EINVAL;
+ 					}
+-				}
++				}									
+ 				tbl->rule_cnt--;
+ 				if (rule->hdr)
+ 					__ipa3_release_hdr(rule->hdr->id);

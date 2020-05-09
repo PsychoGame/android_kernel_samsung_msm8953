@@ -1,0 +1,11 @@
+--- original/scripts/sortextable.h	2020-05-07 08:06:23.769168665 +0200
++++ changed/scripts/sortextable.h	2019-06-03 13:39:54.000000000 +0200
+@@ -206,6 +206,6 @@ do_func(Elf_Ehdr *ehdr, char const *cons
+ 	printf("sort done marker at %lx\n",
+ 	       (unsigned long)((char *)sort_done_location - (char *)ehdr));
+ #endif
+-	/* We sorted it, clear the flag. */
+-	w(0, sort_done_location);
++	/* We need to sort ex_table in runtime due to KASLR */
++	//w(0, sort_done_location);
+ }

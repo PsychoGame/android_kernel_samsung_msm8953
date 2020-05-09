@@ -1,0 +1,11 @@
+--- original/drivers/soc/qcom/bam_dmux.c	2020-05-07 11:14:53.849790597 +0200
++++ changed/drivers/soc/qcom/bam_dmux.c	2019-06-03 13:39:52.000000000 +0200
+@@ -231,7 +231,7 @@ static struct srcu_struct bam_dmux_srcu;
+ /* A2 power collaspe */
+ #define UL_TIMEOUT_DELAY 1000	/* in ms */
+ #define UL_FAST_TIMEOUT_DELAY 100 /* in ms */
+-#define SHUTDOWN_TIMEOUT_MS	500
++#define SHUTDOWN_TIMEOUT_MS	2000
+ #define UL_WAKEUP_TIMEOUT_MS	2000
+ static uint32_t ul_timeout_delay = UL_TIMEOUT_DELAY;
+ static void toggle_apps_ack(void);

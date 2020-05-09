@@ -1,0 +1,16 @@
+--- original/mm/huge_memory.c	2020-05-07 08:31:27.594770974 +0200
++++ changed/mm/huge_memory.c	2019-06-03 13:39:53.000000000 +0200
+@@ -1243,6 +1243,13 @@ struct page *follow_trans_huge_pmd(struc
+ 		_pmd = pmd_mkyoung(*pmd);
+ 		if (flags & FOLL_WRITE)
+ 			_pmd = pmd_mkdirty(_pmd);
++		 * And if the dirty bit will become meaningful and
++		 * we'll only set it with FOLL_WRITE, an atomic
++		 * set_bit will be required on the pmd to set the
++		 * young bit, instead of the current set_pmd_at.
++		 */
++		_pmd = pmd_mkyoung(pmd_mkdirty(*pmd));
++
+ 		if (pmdp_set_access_flags(vma, addr & HPAGE_PMD_MASK,
+ 					  pmd, _pmd, flags & FOLL_WRITE))
+ 			update_mmu_cache_pmd(vma, addr, pmd);

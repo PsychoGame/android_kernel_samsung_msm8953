@@ -1,0 +1,10 @@
+--- original/drivers/usb/serial/pl2303.h	2020-05-07 08:06:19.123214317 +0200
++++ changed/drivers/usb/serial/pl2303.h	2019-06-03 13:39:52.000000000 +0200
+@@ -17,6 +17,7 @@
+ #define PL2303_PRODUCT_ID_DCU11		0x1234
+ #define PL2303_PRODUCT_ID_PHAROS	0xaaa0
+ #define PL2303_PRODUCT_ID_RSAQ3		0xaaa2
++#define PL2303_PRODUCT_ID_CHILITAG	0xaaa8
+ #define PL2303_PRODUCT_ID_ALDIGA	0x0611
+ #define PL2303_PRODUCT_ID_MMX		0x0612
+ #define PL2303_PRODUCT_ID_GPRS		0x0609

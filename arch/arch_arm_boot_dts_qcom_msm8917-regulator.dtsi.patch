@@ -1,0 +1,10 @@
+--- original/arch/arm/boot/dts/qcom/msm8917-regulator.dtsi	2020-05-07 08:31:19.998839310 +0200
++++ changed/arch/arm/boot/dts/qcom/msm8917-regulator.dtsi	2019-06-03 13:39:48.000000000 +0200
+@@ -499,6 +499,7 @@
+ 	};
+ 
+ 	eldo2_pm8917: eldo2 {
++		status = "disabled";
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "eldo2_pm8917";
+ 		startup-delay-us = <0>;

@@ -1,0 +1,17 @@
+--- original/net/core/ethtool.c	2020-05-07 08:06:22.938176831 +0200
++++ changed/net/core/ethtool.c	2019-06-03 13:39:54.000000000 +0200
+@@ -902,11 +902,13 @@ static int ethtool_reset(struct net_devi
+ 
+ static int ethtool_get_wol(struct net_device *dev, char __user *useraddr)
+ {
+-	struct ethtool_wolinfo wol = { .cmd = ETHTOOL_GWOL };
++	struct ethtool_wolinfo wol;
+ 
+ 	if (!dev->ethtool_ops->get_wol)
+ 		return -EOPNOTSUPP;
+ 
++	memset(&wol, 0, sizeof(struct ethtool_wolinfo));
++	wol.cmd = ETHTOOL_GWOL;
+ 	dev->ethtool_ops->get_wol(dev, &wol);
+ 
+ 	if (copy_to_user(useraddr, &wol, sizeof(wol)))

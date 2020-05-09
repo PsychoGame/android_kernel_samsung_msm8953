@@ -1,0 +1,10 @@
+--- original/arch/arm/include/asm/io.h	2020-05-07 08:06:05.526347923 +0200
++++ changed/arch/arm/include/asm/io.h	2019-06-03 13:39:49.000000000 +0200
+@@ -424,6 +424,7 @@ extern void _memset_io(volatile void __i
+ #define ioremap_cache(cookie,size)	__arm_ioremap((cookie), (size), MT_DEVICE_CACHED)
+ #define ioremap_wc(cookie,size)		__arm_ioremap((cookie), (size), MT_DEVICE_WC)
+ #define iounmap				__arm_iounmap
++#define ioremap_cached			ioremap_cache
+ 
+ /*
+  * io{read,write}{8,16,32,64} macros

@@ -1,0 +1,10 @@
+--- original/fs/ext4/ext4_extents.h	2020-05-07 08:06:20.084204874 +0200
++++ changed/fs/ext4/ext4_extents.h	2019-06-03 13:39:53.000000000 +0200
+@@ -103,6 +103,7 @@ struct ext4_extent_header {
+ };
+ 
+ #define EXT4_EXT_MAGIC		cpu_to_le16(0xf30a)
++#define EXT4_MAX_EXTENT_DEPTH 5
+ 
+ #define EXT4_EXTENT_TAIL_OFFSET(hdr) \
+ 	(sizeof(struct ext4_extent_header) + \

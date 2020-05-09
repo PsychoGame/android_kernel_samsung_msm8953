@@ -1,0 +1,12 @@
+--- original/include/linux/sched/sysctl.h	2020-05-07 08:06:21.502190941 +0200
++++ changed/include/linux/sched/sysctl.h	2019-06-03 13:39:53.000000000 +0200
+@@ -65,6 +65,9 @@ extern unsigned int sysctl_sched_small_w
+ extern unsigned int sysctl_sched_big_waker_task_load_pct;
+ extern unsigned int sysctl_sched_prefer_sync_wakee_to_waker;
+ 
++#ifdef CONFIG_SEC_ADAPTIVE_LOAD_TRACKING
++extern unsigned int sysctl_sched_peak_detection_pct;
++#endif
+ #ifdef CONFIG_SCHED_QHMP
+ extern unsigned int sysctl_sched_min_runtime;
+ extern unsigned int sysctl_sched_small_task_pct;

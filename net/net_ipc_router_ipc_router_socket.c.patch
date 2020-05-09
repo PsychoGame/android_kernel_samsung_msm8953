@@ -1,0 +1,47 @@
+--- original/net/ipc_router/ipc_router_socket.c	2020-05-07 08:31:27.853768644 +0200
++++ changed/net/ipc_router/ipc_router_socket.c	2019-06-03 13:39:54.000000000 +0200
+@@ -32,6 +32,8 @@
+ 
+ #include <net/sock.h>
+ 
++#include <soc/qcom/subsystem_restart.h>
++
+ #include "ipc_router_private.h"
+ #include "ipc_router_security.h"
+ 
+@@ -430,6 +432,7 @@ static int msm_ipc_router_ioctl(struct s
+ 	unsigned int n;
+ 	size_t srv_info_sz = 0;
+ 	int ret;
++	struct msm_ipc_subsys_request subsys_req;
+ 
+ 	if (!sk)
+ 		return -EINVAL;
+@@ -526,6 +529,27 @@ static int msm_ipc_router_ioctl(struct s
+ 			port_ptr->type = IRSC_PORT;
+ 		break;
+ 
++	case IPC_SUB_IOCTL_SUBSYS_GET_RESTART:
++		if (!check_permissions()) {
++			IPC_RTR_ERR("%s: %s Do not have permissions\n",
++				__func__, current->comm);
++			ret = -EPERM;
++			break;
++		}
++		ret = copy_from_user(&subsys_req, (void *)arg, sizeof(subsys_req));
++		if (ret) {
++			ret = -EFAULT;
++			break;
++		}
++
++		if (subsys_req.request_id == SUBSYS_RES_REQ)
++			subsys_force_stop((const char *)(subsys_req.name), true);
++		else if (subsys_req.request_id == SUBSYS_CR_REQ)
++			subsys_force_stop((const char *)(subsys_req.name), false);
++		else
++			ret = -EINVAL;
++		break;
++
+ 	default:
+ 		ret = -EINVAL;
+ 	}

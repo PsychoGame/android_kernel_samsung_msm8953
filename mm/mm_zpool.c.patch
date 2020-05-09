@@ -1,0 +1,28 @@
+--- original/mm/zpool.c	2020-05-07 08:06:22.637179788 +0200
++++ changed/mm/zpool.c	2019-06-03 13:39:54.000000000 +0200
+@@ -161,7 +161,7 @@ struct zpool *zpool_create_pool(char *ty
+ 		return NULL;
+ 	}
+ 
+-	zpool = kmalloc(sizeof(*zpool), gfp);
++	zpool = kmalloc(sizeof(*zpool), GFP_KERNEL);
+ 	if (!zpool) {
+ 		pr_err("couldn't create zpool - out of memory\n");
+ 		zpool_put_driver(driver);
+@@ -347,6 +347,16 @@ u64 zpool_get_total_size(struct zpool *z
+ 	return zpool->driver->total_size(zpool->pool);
+ }
+ 
++unsigned long zpool_compact(struct zpool *zpool)
++{
++	return zpool->driver->compact(zpool->pool);
++}
++
++bool zpool_compactable(struct zpool *zpool, unsigned int pages)
++{
++	return zpool->driver->compactable(zpool->pool, pages);
++}
++
+ static int __init init_zpool(void)
+ {
+ 	pr_info("loaded\n");

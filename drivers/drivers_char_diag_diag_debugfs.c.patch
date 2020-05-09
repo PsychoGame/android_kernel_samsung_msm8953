@@ -1,0 +1,11 @@
+--- original/drivers/char/diag/diag_debugfs.c	2020-05-07 08:31:21.343827210 +0200
++++ changed/drivers/char/diag/diag_debugfs.c	2019-06-03 13:39:49.000000000 +0200
+@@ -375,7 +375,7 @@ static ssize_t diag_dbgfs_read_mempool(s
+ 		mempool = &diag_mempools[i];
+ 		bytes_written = scnprintf(buf+bytes_in_buffer, bytes_remaining,
+ 			"%-24s\t"
+-			"%-10p\t"
++			"%-10pK\t"
+ 			"%-5d\t"
+ 			"%-5d\t"
+ 			"%-5d\n",

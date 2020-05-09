@@ -1,0 +1,10 @@
+--- original/kernel/params.c	2020-05-07 08:31:27.453772243 +0200
++++ changed/kernel/params.c	2019-06-03 13:39:53.000000000 +0200
+@@ -496,6 +496,7 @@ int param_set_copystring(const char *val
+ 		return -ENOSPC;
+ 	}
+ 	strcpy(kps->string, val);
++	pr_info("%s \n", __func__);
+ 	return 0;
+ }
+ EXPORT_SYMBOL(param_set_copystring);

@@ -1,0 +1,14 @@
+--- original/fs/ext4/ioctl.c	2020-05-07 08:31:26.387781833 +0200
++++ changed/fs/ext4/ioctl.c	2019-06-03 13:39:53.000000000 +0200
+@@ -714,6 +714,11 @@ encryption_policy_out:
+ 		return -EOPNOTSUPP;
+ #endif
+ 	}
++	case FS_IOC_INVAL_MAPPING:
++	{
++		return invalidate_mapping_pages(inode->i_mapping, 0, -1);
++	}
++
+ 	default:
+ 		return -ENOTTY;
+ 	}

@@ -1,0 +1,23 @@
+--- original/arch/arm64/kernel/vmlinux.lds.S	2020-05-07 08:31:20.406835639 +0200
++++ changed/arch/arm64/kernel/vmlinux.lds.S	2019-06-03 13:39:48.000000000 +0200
+@@ -146,6 +146,20 @@ SECTIONS
+ 
+ 	PERCPU_SECTION(L1_CACHE_BYTES)
+ 
++#ifdef CONFIG_RELOCATABLE_KERNEL
++	.rela : {
++		. = ALIGN(8);
++		__reloc_start = .;
++		*(.rela .rela*)
++		__reloc_end = .;
++	}
++	.dynsym : {
++		. = ALIGN(8);
++		__dynsym_start = .;
++		*(.dynsym)
++	}
++#endif 
++
+ 	. = ALIGN(PAGE_SIZE);
+ 	__init_end = .;
+ 

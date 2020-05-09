@@ -1,0 +1,18 @@
+--- original/arch/arm/boot/dts/qcom/msm8952.dtsi	2020-05-07 08:06:05.330349849 +0200
++++ changed/arch/arm/boot/dts/qcom/msm8952.dtsi	2019-06-03 13:39:48.000000000 +0200
+@@ -995,9 +995,13 @@
+ 		clocks = <&clock_gcc clk_xo_wlan_clk>,
+ 			 <&clock_gcc clk_rf_clk2>,
+ 			 <&clock_debug clk_gcc_debug_mux>,
+-			 <&clock_gcc clk_wcnss_m_clk>;
++			 <&clock_gcc clk_wcnss_m_clk>,
++			 <&clock_gcc clk_snoc_wcnss_a_clk>;
+ 
+-		clock-names = "xo", "rf_clk", "measure", "wcnss_debug";
++		clock-names = "xo", "rf_clk", "measure", "wcnss_debug",
++			      "snoc_wcnss";
++
++		qcom,snoc-wcnss-clock-freq = <200000000>;
+ 
+ 		qcom,has-autodetect-xo;
+ 		qcom,is-pronto-v3;

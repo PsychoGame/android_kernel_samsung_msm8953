@@ -1,0 +1,15 @@
+--- original/net/wireless/Makefile	2020-05-07 08:06:23.621170119 +0200
++++ changed/net/wireless/Makefile	2019-06-03 13:39:54.000000000 +0200
+@@ -19,7 +19,12 @@ CFLAGS_trace.o := -I$(src)
+ 
+ ccflags-y += -D__CHECK_ENDIAN__
+ 
++ifeq ($(CONFIG_DBTXT_VARIATION),0)
+ $(obj)/regdb.c: $(src)/db.txt $(src)/genregdb.awk
+ 	@$(AWK) -f $(srctree)/$(src)/genregdb.awk < $< > $@
++else
++$(obj)/regdb.c: $(src)/db.txt_$(CONFIG_DBTXT_VARIATION) $(src)/genregdb.awk
++	@$(AWK) -f $(srctree)/$(src)/genregdb.awk < $< > $@
++endif
+ 
+ clean-files := regdb.c

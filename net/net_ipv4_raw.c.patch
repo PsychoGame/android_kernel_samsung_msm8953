@@ -1,0 +1,10 @@
+--- original/net/ipv4/raw.c	2020-05-07 08:31:27.889768320 +0200
++++ changed/net/ipv4/raw.c	2019-06-03 13:39:54.000000000 +0200
+@@ -488,6 +488,7 @@ static int raw_sendmsg(struct kiocb *ioc
+ 	err = -EMSGSIZE;
+ 	if (len > 0xFFFF)
+ 		goto out;
++	
+ 
+ 	/* hdrincl should be READ_ONCE(inet->hdrincl)
+ 	 * but READ_ONCE() doesn't work with bit fields

@@ -1,0 +1,10 @@
+--- original/fs/fat/Makefile	2020-05-07 08:06:20.135204373 +0200
++++ changed/fs/fat/Makefile	2019-06-03 13:39:53.000000000 +0200
+@@ -6,6 +6,6 @@ obj-$(CONFIG_FAT_FS) += fat.o
+ obj-$(CONFIG_VFAT_FS) += vfat.o
+ obj-$(CONFIG_MSDOS_FS) += msdos.o
+ 
+-fat-y := cache.o dir.o fatent.o file.o inode.o misc.o nfs.o
++fat-y := cache.o dir.o fatent.o file.o inode.o misc.o nfs.o xattr.o
+ vfat-y := namei_vfat.o
+ msdos-y := namei_msdos.o

@@ -1,0 +1,8 @@
+--- original/drivers/thermal/Makefile	2020-05-07 08:06:18.527220174 +0200
++++ changed/drivers/thermal/Makefile	2019-06-03 13:39:52.000000000 +0200
+@@ -45,3 +45,5 @@ obj-$(CONFIG_THERMAL_QPNP_ADC_TM)	+= qpn
+ obj-$(CONFIG_THERMAL_MONITOR)	+= msm_thermal.o msm_thermal-dev.o
+ obj-$(CONFIG_LIMITS_MONITOR)	+= lmh_interface.o
+ obj-$(CONFIG_LIMITS_LITE_HW)	+= lmh_lite.o
++# Sec thermal cpu wear leveling
++obj-$(CONFIG_SS_THERMAL_CPU_WEAR_LEVEL) += ss_thermal.o

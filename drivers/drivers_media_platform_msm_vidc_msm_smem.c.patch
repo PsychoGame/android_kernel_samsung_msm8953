@@ -1,0 +1,11 @@
+--- original/drivers/media/platform/msm/vidc/msm_smem.c	2020-05-07 08:31:23.712805898 +0200
++++ changed/drivers/media/platform/msm/vidc/msm_smem.c	2019-06-03 13:39:50.000000000 +0200
+@@ -475,7 +475,7 @@ bool msm_smem_compare_buffers(void *clt,
+ 	}
+ 	handle = ion_import_dma_buf(client->clnt, fd);
+ 	ret = handle == priv;
+-	handle ? ion_free(client->clnt, handle) : 0;
++	(!IS_ERR_OR_NULL(handle)) ? ion_free(client->clnt, handle) : 0;
+ 	return ret;
+ }
+ 

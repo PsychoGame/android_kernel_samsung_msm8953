@@ -1,0 +1,12 @@
+--- original/net/xfrm/xfrm_user.c	2020-05-07 11:02:09.646856935 +0200
++++ changed/net/xfrm/xfrm_user.c	2019-06-03 13:39:54.000000000 +0200
+@@ -392,6 +392,9 @@ static inline int xfrm_replay_verify_len
+ 	if (up->replay_window > up->bmp_len * sizeof(__u32) * 8)
+ 		return -EINVAL;
+ 
++	if (up->replay_window > up->bmp_len * sizeof(__u32) * 8)
++			return -EINVAL;
++
+ 	return 0;
+ }
+ 

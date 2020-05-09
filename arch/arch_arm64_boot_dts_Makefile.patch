@@ -1,0 +1,12 @@
+--- original/arch/arm64/boot/dts/Makefile	2020-05-07 08:06:06.134341949 +0200
++++ changed/arch/arm64/boot/dts/Makefile	2019-06-03 14:17:54.000000000 +0200
+@@ -1,6 +1,8 @@
+ dts-dirs += apm
+ dts-dirs += arm
+ dts-dirs += cavium
+-dts-dirs += qcom
++# FIXME: ignore all qcom dts files
++#dts-dirs += qcom
++dts-dirs += samsung
+ 
+ subdir-y	:= $(dts-dirs)

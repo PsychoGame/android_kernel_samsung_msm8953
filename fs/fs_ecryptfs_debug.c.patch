@@ -1,0 +1,22 @@
+--- original/fs/ecryptfs/debug.c	2020-05-07 08:06:20.037205336 +0200
++++ changed/fs/ecryptfs/debug.c	2019-06-03 13:39:53.000000000 +0200
+@@ -95,6 +95,7 @@ void ecryptfs_dump_auth_tok(struct ecryp
+  *
+  * Dump hexadecimal representation of char array
+  */
++#ifndef CONFIG_SDP
+ void ecryptfs_dump_hex(char *data, int bytes)
+ {
+ 	int i = 0;
+@@ -118,6 +119,11 @@ void ecryptfs_dump_hex(char *data, int b
+ 	if (add_newline)
+ 		printk("\n");
+ }
++#else
++void ecryptfs_dump_hex(char *data, int bytes)
++{
++}
++#endif
+ 
+ void ecryptfs_dump_salt_hex(char *data, int key_size,
+ 		const struct ecryptfs_crypt_stat *crypt_stat)

@@ -1,0 +1,38 @@
+--- original/drivers/usb/storage/ene_ub6250.c	2020-05-07 08:06:19.152214032 +0200
++++ changed/drivers/usb/storage/ene_ub6250.c	2019-06-03 13:39:52.000000000 +0200
+@@ -1939,6 +1939,8 @@ static int ene_load_bincode(struct us_da
+ 	bcb->CDB[0] = 0xEF;
+ 
+ 	result = ene_send_scsi_cmd(us, FDIR_WRITE, buf, 0);
++	if (us->srb != NULL)
++		scsi_set_resid(us->srb, 0);
+ 	info->BIN_FLAG = flag;
+ 	kfree(buf);
+ 
+@@ -2290,21 +2292,22 @@ static int ms_scsi_irp(struct us_data *u
+ 
+ static int ene_transport(struct scsi_cmnd *srb, struct us_data *us)
+ {
+-	int result = 0;
++	int result = USB_STOR_XFER_GOOD;
+ 	struct ene_ub6250_info *info = (struct ene_ub6250_info *)(us->extra);
+ 
+ 	/*US_DEBUG(usb_stor_show_command(us, srb)); */
+ 	scsi_set_resid(srb, 0);
+-	if (unlikely(!(info->SD_Status.Ready || info->MS_Status.Ready))) {
++	if (unlikely(!(info->SD_Status.Ready || info->MS_Status.Ready)))
+ 		result = ene_init(us);
+-	} else {
++	if (result == USB_STOR_XFER_GOOD) {
++		result = USB_STOR_TRANSPORT_ERROR;
+ 		if (info->SD_Status.Ready)
+ 			result = sd_scsi_irp(us, srb);
+ 
+ 		if (info->MS_Status.Ready)
+ 			result = ms_scsi_irp(us, srb);
+ 	}
+-	return 0;
++	return result;
+ }
+ 
+ 

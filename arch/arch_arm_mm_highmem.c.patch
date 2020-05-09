@@ -1,0 +1,10 @@
+--- original/arch/arm/mm/highmem.c	2020-05-07 08:06:06.078342499 +0200
++++ changed/arch/arm/mm/highmem.c	2019-06-03 13:39:48.000000000 +0200
+@@ -115,6 +115,7 @@ void __kunmap_atomic(void *kvaddr)
+ 		set_fixmap_pte(idx, __pte(0));
+ #else
+ 		(void) idx;  /* to kill a warning */
++		set_fixmap_pte(idx, __pte(0));
+ #endif
+ 		kmap_atomic_idx_pop();
+ 	} else if (vaddr >= PKMAP_ADDR(0) && vaddr < PKMAP_ADDR(LAST_PKMAP)) {

@@ -1,0 +1,10 @@
+--- original/drivers/scsi/sg.c	2020-05-07 08:51:35.047255905 +0200
++++ changed/drivers/scsi/sg.c	2019-06-03 13:39:52.000000000 +0200
+@@ -1069,6 +1069,7 @@ sg_ioctl(struct file *filp, unsigned int
+ 				return -EBUSY;
+ 			}
+ 
++			mutex_lock(&sfp->parentdp->open_rel_lock);
+ 			sg_remove_scat(sfp, &sfp->reserve);
+ 			sg_build_reserve(sfp, val);
+ 			mutex_unlock(&sfp->parentdp->open_rel_lock);

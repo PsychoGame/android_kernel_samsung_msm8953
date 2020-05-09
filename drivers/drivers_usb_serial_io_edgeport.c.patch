@@ -1,0 +1,10 @@
+--- original/drivers/usb/serial/io_edgeport.c	2020-05-07 08:06:19.090214642 +0200
++++ changed/drivers/usb/serial/io_edgeport.c	2019-06-03 13:39:52.000000000 +0200
+@@ -2203,7 +2203,6 @@ static int write_cmd_usb(struct edgeport
+ 		/* something went wrong */
+ 		dev_err(dev, "%s - usb_submit_urb(write command) failed, status = %d\n",
+ 			__func__, status);
+-		usb_kill_urb(urb);
+ 		usb_free_urb(urb);
+ 		atomic_dec(&CmdUrbs);
+ 		return status;

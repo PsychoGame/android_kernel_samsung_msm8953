@@ -1,0 +1,21 @@
+--- original/kernel/time/timer.c	2020-05-07 08:31:27.520771640 +0200
++++ changed/kernel/time/timer.c	2019-06-03 13:39:54.000000000 +0200
+@@ -51,6 +51,8 @@
+ 
+ #include "tick-internal.h"
+ 
++#include <linux/sec_debug.h>
++
+ #define CREATE_TRACE_POINTS
+ #include <trace/events/timer.h>
+ 
+@@ -1224,7 +1226,9 @@ static void call_timer_fn(struct timer_l
+ 	lock_map_acquire(&lockdep_map);
+ 
+ 	trace_timer_expire_entry(timer);
++	secdbg_msg("timer %pS entry", fn);
+ 	fn(data);
++	secdbg_msg("timer %pS exit", fn);
+ 	trace_timer_expire_exit(timer);
+ 
+ 	lock_map_release(&lockdep_map);

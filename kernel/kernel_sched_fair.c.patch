@@ -1,0 +1,13 @@
+--- original/kernel/sched/fair.c	2020-05-07 08:31:27.487771937 +0200
++++ changed/kernel/sched/fair.c	2019-06-03 13:39:54.000000000 +0200
+@@ -4087,6 +4087,10 @@ void init_new_task_load(struct task_stru
+ 	}
+ 
+ 	p->ravg.demand = init_load_windows;
++#ifdef CONFIG_SEC_ADAPTIVE_LOAD_TRACKING
++	p->ravg.global_average = init_load_windows;
++	p->ravg.nr_global_average  = 1;
++#endif	
+ 	clear_ravg_pred_demand();
+ 	for (i = 0; i < RAVG_HIST_SIZE_MAX; ++i)
+ 		p->ravg.sum_history[i] = init_load_windows;

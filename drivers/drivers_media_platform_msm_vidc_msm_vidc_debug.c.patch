@@ -1,0 +1,14 @@
+--- original/drivers/media/platform/msm/vidc/msm_vidc_debug.c	2020-05-07 08:31:23.731805727 +0200
++++ changed/drivers/media/platform/msm/vidc/msm_vidc_debug.c	2019-06-03 13:39:50.000000000 +0200
+@@ -22,7 +22,11 @@ int msm_vidc_debug_out = VIDC_OUT_PRINTK
+ int msm_vidc_fw_debug = 0x18;
+ int msm_vidc_fw_debug_mode = 1;
+ int msm_vidc_fw_low_power_mode = 1;
++#if defined(CONFIG_SEC_J4CORELTE_PROJECT)//Temp increase timeout to 5 sec(unable to get contiguous memory in 1 sec)
++int msm_vidc_hw_rsp_timeout = 5000;
++#else
+ int msm_vidc_hw_rsp_timeout = 1000;
++#endif	
+ int msm_vidc_fw_coverage = 0;
+ int msm_vidc_dec_dcvs_mode = 1;
+ int msm_vidc_enc_dcvs_mode = 1;

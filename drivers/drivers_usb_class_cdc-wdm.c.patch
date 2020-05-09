@@ -1,0 +1,11 @@
+--- original/drivers/usb/class/cdc-wdm.c	2020-05-07 08:06:18.672218749 +0200
++++ changed/drivers/usb/class/cdc-wdm.c	2019-06-03 13:39:52.000000000 +0200
+@@ -891,6 +891,8 @@ static int wdm_probe(struct usb_interfac
+ 		case USB_CDC_HEADER_TYPE:
+ 			break;
+ 		case USB_CDC_DMM_TYPE:
++			if (buflen < sizeof(struct usb_cdc_dmm_desc))
++				break;
+ 			dmhd = (struct usb_cdc_dmm_desc *)buffer;
+ 			maxcom = le16_to_cpu(dmhd->wMaxCommand);
+ 			dev_dbg(&intf->dev,

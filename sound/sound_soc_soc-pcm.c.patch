@@ -1,0 +1,13 @@
+--- original/sound/soc/soc-pcm.c	2020-05-07 08:51:35.733249186 +0200
++++ changed/sound/soc/soc-pcm.c	2019-06-03 13:39:55.000000000 +0200
+@@ -1774,6 +1774,10 @@ int dpcm_be_dai_hw_free(struct snd_soc_p
+ 		if (!snd_soc_dpcm_can_be_free_stop(fe, be, stream))
+ 				continue;
+ 
++		/* do not free hw if this BE is used by other FE */
++		if (be->dpcm[stream].users > 1)
++			continue;
++
+ 		if ((be->dpcm[stream].state != SND_SOC_DPCM_STATE_HW_PARAMS) &&
+ 		    (be->dpcm[stream].state != SND_SOC_DPCM_STATE_PREPARE) &&
+ 		    (be->dpcm[stream].state != SND_SOC_DPCM_STATE_HW_FREE) &&

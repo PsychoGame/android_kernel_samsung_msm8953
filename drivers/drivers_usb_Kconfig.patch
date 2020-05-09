@@ -1,0 +1,22 @@
+--- original/drivers/usb/Kconfig	2020-05-07 08:06:18.660218867 +0200
++++ changed/drivers/usb/Kconfig	2019-06-03 13:39:52.000000000 +0200
+@@ -98,6 +98,10 @@ endif
+ 
+ source "drivers/usb/musb/Kconfig"
+ 
++source "drivers/usb/notify/Kconfig"
++
++source "drivers/usb/manager/Kconfig"
++
+ source "drivers/usb/dwc3/Kconfig"
+ 
+ source "drivers/usb/dwc2/Kconfig"
+@@ -149,6 +153,8 @@ source "drivers/usb/phy/Kconfig"
+ 
+ source "drivers/usb/gadget/Kconfig"
+ 
++source "drivers/usb/typec/Kconfig"
++
+ config USB_LED_TRIG
+ 	bool "USB LED Triggers"
+ 	depends on LEDS_CLASS && USB_COMMON && LEDS_TRIGGERS

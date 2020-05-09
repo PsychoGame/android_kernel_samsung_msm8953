@@ -1,0 +1,26 @@
+--- original/drivers/char/random.c	2020-05-07 08:51:34.592260362 +0200
++++ changed/drivers/char/random.c	2019-06-03 13:39:49.000000000 +0200
+@@ -1804,12 +1804,18 @@ void add_hwgenerator_randomness(const ch
+ {
+ 	struct entropy_store *poolp = &input_pool;
+ 
+-	/* Suspend writing if we're above the trickle threshold.
+-	 * We'll be woken up again once below random_write_wakeup_thresh,
+-	 * or when the calling thread is about to terminate.
+-	 */
+-	wait_event_interruptible(random_write_wait, kthread_should_stop() ||
++	if (unlikely(nonblocking_pool.initialized == 0))
++		poolp = &nonblocking_pool;
++	else {
++		/* Suspend writing if we're above the trickle
++		 * threshold.  We'll be woken up again once below
++		 * random_write_wakeup_thresh, or when the calling
++		 * thread is about to terminate.
++		 */
++		wait_event_interruptible(random_write_wait,
++					 kthread_should_stop() ||
+ 			ENTROPY_BITS(&input_pool) <= random_write_wakeup_bits);
++	}
+ 	mix_pool_bytes(poolp, buffer, count);
+ 	credit_entropy_bits(poolp, entropy);
+ }

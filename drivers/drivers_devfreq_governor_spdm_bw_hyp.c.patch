@@ -1,0 +1,27 @@
+--- original/drivers/devfreq/governor_spdm_bw_hyp.c	2020-05-07 08:06:09.955304403 +0200
++++ changed/drivers/devfreq/governor_spdm_bw_hyp.c	2019-06-03 13:39:49.000000000 +0200
+@@ -33,6 +33,7 @@ enum msm_spdm_rt_res {
+ 
+ static LIST_HEAD(devfreqs);
+ static DEFINE_MUTEX(devfreqs_lock);
++static int g_irq;
+ 
+ static int enable_clocks(void)
+ {
+@@ -304,6 +305,7 @@ static int gov_spdm_hyp_eh(struct devfre
+ 			return -EINVAL;
+ 		}
+ 		spdm_data->enabled = true;
++		enable_irq(g_irq);
+ 		devfreq_monitor_start(devfreq);
+ 		break;
+ 
+@@ -370,6 +372,8 @@ static int probe(struct platform_device
+ 	if (ret)
+ 		goto no_irq;
+ 
++	g_irq = *irq;
++	disable_irq(*irq);
+ 	enable_clocks();
+ 	return 0;
+ 

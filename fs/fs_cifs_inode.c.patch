@@ -1,0 +1,17 @@
+--- original/fs/cifs/inode.c	2020-05-07 08:31:26.296782651 +0200
++++ changed/fs/cifs/inode.c	2019-06-03 13:39:53.000000000 +0200
+@@ -1825,11 +1825,11 @@ cifs_invalidate_mapping(struct inode *in
+  * @word: long word containing the bit lock
+  */
+ static int
+-cifs_wait_bit_killable(struct wait_bit_key *key)
++cifs_wait_bit_killable(struct wait_bit_key *key, int mode)
+ {
+-	if (fatal_signal_pending(current))
+-		return -ERESTARTSYS;
+ 	freezable_schedule_unsafe();
++	if (signal_pending_state(mode, current))
++		return -ERESTARTSYS;
+ 	return 0;
+ }
+ 

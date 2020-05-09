@@ -1,0 +1,7 @@
+--- original/drivers/usb/gadget/u_f.h	2020-05-07 08:53:30.906121064 +0200
++++ changed/drivers/usb/gadget/u_f.h	2019-06-03 13:39:52.000000000 +0200
+@@ -56,3 +56,4 @@ static inline void  free_ep_req(struct u
+ }
+ 
+ #endif /* __U_F_H__ */
++

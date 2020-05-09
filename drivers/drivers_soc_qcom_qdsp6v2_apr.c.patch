@@ -1,0 +1,79 @@
+--- original/drivers/soc/qcom/qdsp6v2/apr.c	2020-05-07 11:40:16.608312701 +0200
++++ changed/drivers/soc/qcom/qdsp6v2/apr.c	2019-06-03 13:39:52.000000000 +0200
+@@ -459,19 +459,19 @@ struct apr_svc *apr_register(char *dest,
+ 			mutex_unlock(&svc->m_lock);
+ 			return NULL;
+ 		}
+-		if (!svc->port_cnt && !svc->svc_cnt)
++		if (!svc->svc_cnt)
+ 			clnt->svc_cnt++;
+ 		svc->port_cnt++;
+ 		svc->port_fn[temp_port] = svc_fn;
+ 		svc->port_priv[temp_port] = priv;
++		svc->svc_cnt++;
+ 	} else {
+ 		if (!svc->fn) {
+-			if (!svc->port_cnt && !svc->svc_cnt)
++			if (!svc->svc_cnt)
+ 				clnt->svc_cnt++;
+ 			svc->fn = svc_fn;
+-			if (svc->port_cnt)
+-				svc->svc_cnt++;
+ 			svc->priv = priv;
++			svc->svc_cnt++;
+ 		}
+ 	}
+ 
+@@ -531,6 +531,12 @@ void apr_cb_func(void *buf, int len, voi
+ 		pr_err("APR: Wrong paket size\n");
+ 		return;
+ 	}
++
++	if (hdr->pkt_size < hdr_size) {
++		pr_err("APR: Packet size less than header size\n");
++		return;
++	}
++
+ 	msg_type = hdr->hdr_field;
+ 	msg_type = (msg_type >> 0x08) & 0x0003;
+ 	if (msg_type >= APR_MSG_TYPE_MAX && msg_type != APR_BASIC_RSP_RESULT) {
+@@ -674,29 +680,27 @@ int apr_deregister(void *handle)
+ 	if (!handle)
+ 		return -EINVAL;
+ 
+-	mutex_lock(&svc->m_lock);
++	if (!svc->svc_cnt) {
++		pr_err("%s: svc already deregistered. svc = %pK\n",
++			__func__, svc);
++		return -EINVAL;
++	}
++
+ 	dest_id = svc->dest_id;
+ 	client_id = svc->client_id;
+ 	clnt = &client[dest_id][client_id];
+ 
+-	if (svc->port_cnt > 0 || svc->svc_cnt > 0) {
++	if (svc->svc_cnt > 0) {
+ 		if (svc->port_cnt)
+ 			svc->port_cnt--;
+-		else if (svc->svc_cnt)
+-			svc->svc_cnt--;
+-		if (!svc->port_cnt && !svc->svc_cnt) {
++		svc->svc_cnt--;
++		if (!svc->svc_cnt) {
+ 			client[dest_id][client_id].svc_cnt--;
+-			svc->need_reset = 0x0;
+-		}
+-	} else if (client[dest_id][client_id].svc_cnt > 0) {
+-		client[dest_id][client_id].svc_cnt--;
+-		if (!client[dest_id][client_id].svc_cnt) {
+-			svc->need_reset = 0x0;
+ 			pr_debug("%s: service is reset %pK\n", __func__, svc);
+ 		}
+ 	}
+ 
+-	if (!svc->port_cnt && !svc->svc_cnt) {
++	if (!svc->svc_cnt) {
+ 		svc->priv = NULL;
+ 		svc->id = 0;
+ 		svc->fn = NULL;

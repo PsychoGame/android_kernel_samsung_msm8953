@@ -1,0 +1,15 @@
+--- original/security/selinux/netif.c	2020-05-07 08:06:23.824168124 +0200
++++ changed/security/selinux/netif.c	2019-06-03 13:39:54.000000000 +0200
+@@ -278,6 +278,12 @@ static __init int sel_netif_init(void)
+ {
+ 	int i;
+ 
++// [ SEC_SELINUX_PORTING_COMMON
++#ifdef CONFIG_ALWAYS_ENFORCE
++	selinux_enabled = 1;
++#endif
++// ] SEC_SELINUX_PORTING_COMMON
++
+ 	if (!selinux_enabled)
+ 		return 0;
+ 

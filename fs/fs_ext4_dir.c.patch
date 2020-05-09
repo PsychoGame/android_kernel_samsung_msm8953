@@ -1,0 +1,13 @@
+--- original/fs/ext4/dir.c	2020-05-07 08:31:26.362782058 +0200
++++ changed/fs/ext4/dir.c	2019-06-03 13:39:53.000000000 +0200
+@@ -84,6 +84,10 @@ int __ext4_check_dir_entry(const char *f
+ 	else
+ 		return 0;
+ 
++	/* for debugging, sangwoo2.lee */
++	print_bh(dir->i_sb, bh, 0, EXT4_BLOCK_SIZE(dir->i_sb));
++	/* for debugging */
++
+ 	if (filp)
+ 		ext4_error_file(filp, function, line, bh->b_blocknr,
+ 				"bad entry in directory: %s - offset=%u(%u), "

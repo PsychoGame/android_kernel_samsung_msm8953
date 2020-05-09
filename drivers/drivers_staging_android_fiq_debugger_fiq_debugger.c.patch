@@ -1,0 +1,14 @@
+--- original/drivers/staging/android/fiq_debugger/fiq_debugger.c	2020-05-07 08:06:17.759227720 +0200
++++ changed/drivers/staging/android/fiq_debugger/fiq_debugger.c	2019-06-03 13:39:52.000000000 +0200
+@@ -456,9 +456,8 @@ static void fiq_debugger_help(struct fiq
+ 			" console       Switch terminal to console\n"
+ 			" ps            Process list\n");
+ #ifdef CONFIG_KGDB
+-	if (fiq_kgdb_enable) {
+-		fiq_debugger_printf(&state->output,
+-			" kgdb          Enter kernel debugger\n");
++	fiq_debugger_printf(&state->output,
++				" kgdb          Enter kernel debugger\n");
+ #endif
+ }
+ 

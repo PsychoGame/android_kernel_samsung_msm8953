@@ -1,0 +1,24 @@
+--- original/mm/memory.c	2020-05-07 08:31:27.613770803 +0200
++++ changed/mm/memory.c	2019-06-03 13:39:53.000000000 +0200
+@@ -2595,6 +2595,7 @@ static int do_anonymous_page(struct mm_s
+ 	pte_t entry;
+ 
+ 	pte_unmap(page_table);
++	
+ 
+ 	/* File mapping without ->vm_ops ? */
+ 	if (vma->vm_flags & VM_SHARED)
+@@ -2731,8 +2732,13 @@ void do_set_pte(struct vm_area_struct *v
+ 	update_mmu_cache(vma, address, pte);
+ }
+ 
++#ifdef CONFIG_FAULT_AROUND_4KB
+ static unsigned long fault_around_bytes __read_mostly =
+ 	rounddown_pow_of_two(4096);
++#else
++static unsigned long fault_around_bytes __read_mostly =
++	rounddown_pow_of_two(65536);
++#endif
+ 
+ #ifdef CONFIG_DEBUG_FS
+ static int fault_around_bytes_get(void *data, u64 *val)

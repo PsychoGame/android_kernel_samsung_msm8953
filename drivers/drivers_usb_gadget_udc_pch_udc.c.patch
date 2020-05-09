@@ -1,0 +1,10 @@
+--- original/drivers/usb/gadget/udc/pch_udc.c	2020-05-07 08:06:18.799217501 +0200
++++ changed/drivers/usb/gadget/udc/pch_udc.c	2019-06-03 13:39:52.000000000 +0200
+@@ -1533,7 +1533,6 @@ static void pch_udc_free_dma_chain(struc
+ 		td = phys_to_virt(addr);
+ 		addr2 = (dma_addr_t)td->next;
+ 		pci_pool_free(dev->data_requests, td, addr);
+-		td->next = 0x00;
+ 		addr = addr2;
+ 	}
+ 	req->chain_len = 1;

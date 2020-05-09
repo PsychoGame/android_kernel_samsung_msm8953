@@ -1,0 +1,11 @@
+--- original/drivers/platform/msm/ipa/ipa_v2/ipa.c	2020-05-07 08:31:24.754796524 +0200
++++ changed/drivers/platform/msm/ipa/ipa_v2/ipa.c	2019-06-03 13:39:52.000000000 +0200
+@@ -3492,7 +3492,7 @@ void ipa_inc_acquire_wakelock(enum ipa_w
+ 		return;
+ 	spin_lock_irqsave(&ipa_ctx->wakelock_ref_cnt.spinlock, flags);
+ 	if (ipa_ctx->wakelock_ref_cnt.cnt & (1 << ref_client))
+-		IPADBG("client enum %d mask already set. ref cnt = %d\n",
++		IPAERR("client enum %d mask already set. ref cnt = %d\n",
+ 		ref_client, ipa_ctx->wakelock_ref_cnt.cnt);
+ 	ipa_ctx->wakelock_ref_cnt.cnt |= (1 << ref_client);
+ 	if (ipa_ctx->wakelock_ref_cnt.cnt &&

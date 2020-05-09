@@ -1,0 +1,7 @@
+--- original/drivers/soc/Makefile	2020-05-07 08:06:17.621229076 +0200
++++ changed/drivers/soc/Makefile	2019-06-03 13:39:52.000000000 +0200
+@@ -6,3 +6,4 @@ obj-$(CONFIG_ARCH_MSM)		+= qcom/
+ obj-$(CONFIG_ARCH_TEGRA)	+= tegra/
+ obj-$(CONFIG_SOC_TI)		+= ti/
+ obj-$(CONFIG_PLAT_VERSATILE)	+= versatile/
++obj-$(CONFIG_DRV_SAMSUNG)	+= samsung/

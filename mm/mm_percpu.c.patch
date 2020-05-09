@@ -1,0 +1,10 @@
+--- original/mm/percpu.c	2020-05-07 08:31:27.629770659 +0200
++++ changed/mm/percpu.c	2019-06-03 13:39:53.000000000 +0200
+@@ -414,6 +414,7 @@ static int pcpu_need_to_extend(struct pc
+ 				pcpu_schedule_balance_work();
+ 			}
+ 		}
++
+ 	} else {
+ 		margin = PCPU_ATOMIC_MAP_MARGIN_HIGH;
+ 	}

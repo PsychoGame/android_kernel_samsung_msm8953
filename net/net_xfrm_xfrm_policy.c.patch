@@ -1,0 +1,20 @@
+--- original/net/xfrm/xfrm_policy.c	2020-05-07 08:31:28.356764119 +0200
++++ changed/net/xfrm/xfrm_policy.c	2019-06-03 13:39:54.000000000 +0200
+@@ -3020,7 +3020,8 @@ void __init xfrm_init(void)
+ 	xfrm_input_init();
+ }
+ 
+-#ifdef CONFIG_AUDITSYSCALL
++// [ SEC_SELINUX_PORTING_COMMON - remove AUDIT_MAC_IPSEC_EVENT audit log, it conflict with security notification
++#if 0 // #ifdef CONFIG_AUDITSYSCALL
+ static void xfrm_audit_common_policyinfo(struct xfrm_policy *xp,
+ 					 struct audit_buffer *audit_buf)
+ {
+@@ -3084,6 +3085,7 @@ void xfrm_audit_policy_delete(struct xfr
+ }
+ EXPORT_SYMBOL_GPL(xfrm_audit_policy_delete);
+ #endif
++// ] SEC_SELINUX_PORTING_COMMON - remove AUDIT_MAC_IPSEC_EVENT audit log, it conflict with security notification
+ 
+ #ifdef CONFIG_XFRM_MIGRATE
+ static bool xfrm_migrate_selector_match(const struct xfrm_selector *sel_cmp,

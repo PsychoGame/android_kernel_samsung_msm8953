@@ -1,0 +1,19 @@
+--- original/security/keys/request_key.c	2020-05-07 08:31:28.420763543 +0200
++++ changed/security/keys/request_key.c	2019-06-03 13:39:54.000000000 +0200
+@@ -463,13 +463,13 @@ static struct key *construct_key_and_lin
+ 
+ 	kenter("");
+ 
++	if (ctx->index_key.type == &key_type_keyring)
++		return ERR_PTR(-EPERM);
++
+ 	ret = construct_get_dest_keyring(&dest_keyring);
+ 	if (ret)
+ 		goto error;
+ 
+-	if (ctx->index_key.type == &key_type_keyring)
+-		return ERR_PTR(-EPERM);
+-
+ 	user = key_user_lookup(current_fsuid());
+ 	if (!user) {
+ 		ret = -ENOMEM;

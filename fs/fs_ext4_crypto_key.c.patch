@@ -1,0 +1,11 @@
+--- original/fs/ext4/crypto_key.c	2020-05-07 08:31:26.362782058 +0200
++++ changed/fs/ext4/crypto_key.c	2019-06-03 13:39:53.000000000 +0200
+@@ -147,7 +147,7 @@ int ext4_get_encryption_info(struct inod
+ 		return -EINVAL;
+ 	res = 0;
+ 
+-	crypt_info = kmem_cache_alloc(ext4_crypt_info_cachep, GFP_KERNEL);
++	crypt_info = kmem_cache_alloc(ext4_crypt_info_cachep, GFP_NOFS);
+ 	if (!crypt_info)
+ 		return -ENOMEM;
+ 

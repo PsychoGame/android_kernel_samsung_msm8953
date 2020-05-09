@@ -1,0 +1,56 @@
+--- original/drivers/hid/hid-ntrig.c	2020-05-07 08:06:11.600288239 +0200
++++ changed/drivers/hid/hid-ntrig.c	2019-06-03 13:39:50.000000000 +0200
+@@ -238,7 +238,7 @@ static ssize_t set_min_width(struct devi
+ 
+ 	unsigned long val;
+ 
+-	if (kstrtoul(buf, 0, &val))
++	if (strict_strtoul(buf, 0, &val))
+ 		return -EINVAL;
+ 
+ 	if (val > nd->sensor_physical_width)
+@@ -273,7 +273,7 @@ static ssize_t set_min_height(struct dev
+ 
+ 	unsigned long val;
+ 
+-	if (kstrtoul(buf, 0, &val))
++	if (strict_strtoul(buf, 0, &val))
+ 		return -EINVAL;
+ 
+ 	if (val > nd->sensor_physical_height)
+@@ -307,7 +307,7 @@ static ssize_t set_activate_slack(struct
+ 
+ 	unsigned long val;
+ 
+-	if (kstrtoul(buf, 0, &val))
++	if (strict_strtoul(buf, 0, &val))
+ 		return -EINVAL;
+ 
+ 	if (val > 0x7f)
+@@ -342,7 +342,7 @@ static ssize_t set_activation_width(stru
+ 
+ 	unsigned long val;
+ 
+-	if (kstrtoul(buf, 0, &val))
++	if (strict_strtoul(buf, 0, &val))
+ 		return -EINVAL;
+ 
+ 	if (val > nd->sensor_physical_width)
+@@ -378,7 +378,7 @@ static ssize_t set_activation_height(str
+ 
+ 	unsigned long val;
+ 
+-	if (kstrtoul(buf, 0, &val))
++	if (strict_strtoul(buf, 0, &val))
+ 		return -EINVAL;
+ 
+ 	if (val > nd->sensor_physical_height)
+@@ -412,7 +412,7 @@ static ssize_t set_deactivate_slack(stru
+ 
+ 	unsigned long val;
+ 
+-	if (kstrtoul(buf, 0, &val))
++	if (strict_strtoul(buf, 0, &val))
+ 		return -EINVAL;
+ 
+ 	/*

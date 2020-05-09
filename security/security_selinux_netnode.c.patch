@@ -1,0 +1,15 @@
+--- original/security/selinux/netnode.c	2020-05-07 08:06:23.825168115 +0200
++++ changed/security/selinux/netnode.c	2019-06-03 13:39:54.000000000 +0200
+@@ -305,6 +305,12 @@ static __init int sel_netnode_init(void)
+ {
+ 	int iter;
+ 
++// [ SEC_SELINUX_PORTING_COMMON
++#ifdef CONFIG_ALWAYS_ENFORCE
++	selinux_enabled = 1;
++#endif
++// ] SEC_SELINUX_PORTING_COMMON
++
+ 	if (!selinux_enabled)
+ 		return 0;
+ 

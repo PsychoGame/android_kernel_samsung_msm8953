@@ -1,0 +1,16 @@
+--- original/security/selinux/ss/status.c	2020-05-07 08:06:23.835168016 +0200
++++ changed/security/selinux/ss/status.c	2019-06-03 13:39:54.000000000 +0200
+@@ -58,7 +58,13 @@ struct page *selinux_kernel_status_page(
+ 
+ 			status->version = SELINUX_KERNEL_STATUS_VERSION;
+ 			status->sequence = 0;
++// [ SEC_SELINUX_PORTING_COMMON
++#ifdef CONFIG_ALWAYS_ENFORCE
++			status->enforcing = 1;
++#else
+ 			status->enforcing = selinux_enforcing;
++#endif
++// ] SEC_SELINUX_PORTING_COMMON
+ 			/*
+ 			 * NOTE: the next policyload event shall set
+ 			 * a positive value on the status->policyload,

@@ -1,0 +1,34 @@
+--- original/security/keys/encrypted-keys/encrypted.c	2020-05-07 08:31:28.409763642 +0200
++++ changed/security/keys/encrypted-keys/encrypted.c	2019-06-03 13:39:54.000000000 +0200
+@@ -141,20 +141,20 @@ static int valid_ecryptfs_desc(const cha
+  */
+ static int valid_master_desc(const char *new_desc, const char *orig_desc)
+ {
+-	int prefix_len;
++   int prefix_len;
+ 
+-	if (!strncmp(new_desc, KEY_TRUSTED_PREFIX, KEY_TRUSTED_PREFIX_LEN))
+-		prefix_len = KEY_TRUSTED_PREFIX_LEN;
+-	else if (!strncmp(new_desc, KEY_USER_PREFIX, KEY_USER_PREFIX_LEN))
+-		prefix_len = KEY_USER_PREFIX_LEN;
+-	else
+-		return -EINVAL;
++   if (!strncmp(new_desc, KEY_TRUSTED_PREFIX, KEY_TRUSTED_PREFIX_LEN))
++      prefix_len = KEY_TRUSTED_PREFIX_LEN;
++   else if (!strncmp(new_desc, KEY_USER_PREFIX, KEY_USER_PREFIX_LEN))
++      prefix_len = KEY_USER_PREFIX_LEN;
++   else
++      return -EINVAL;
+ 
+-	if (!new_desc[prefix_len])
+-		return -EINVAL;
++   if (!new_desc[prefix_len])
++      return -EINVAL;
+ 
+-	if (orig_desc && strncmp(new_desc, orig_desc, prefix_len))
+-		return -EINVAL;
++   if (orig_desc && strncmp(new_desc, orig_desc, prefix_len))
++      return -EINVAL;
+ 
+ 	return 0;
+ }

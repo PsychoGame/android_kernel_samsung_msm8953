@@ -1,0 +1,16 @@
+--- original/security/selinux/include/security.h	2020-05-07 08:06:23.824168124 +0200
++++ changed/security/selinux/include/security.h	2019-06-03 13:39:54.000000000 +0200
+@@ -134,7 +134,13 @@ struct extended_perms {
+ };
+ 
+ /* definitions of av_decision.flags */
++// [ SEC_SELINUX_PORTING_COMMON
++#ifdef CONFIG_ALWAYS_ENFORCE
++#define AVD_FLAGS_PERMISSIVE	0x0000
++#else
+ #define AVD_FLAGS_PERMISSIVE	0x0001
++#endif
++// ] SEC_SELINUX_PORTING_COMMON
+ 
+ void security_compute_av(u32 ssid, u32 tsid,
+ 			 u16 tclass, struct av_decision *avd,

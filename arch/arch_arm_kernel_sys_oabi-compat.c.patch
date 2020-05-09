@@ -1,0 +1,12 @@
+--- original/arch/arm/kernel/sys_oabi-compat.c	2020-05-07 08:06:05.581347383 +0200
++++ changed/arch/arm/kernel/sys_oabi-compat.c	2019-06-03 13:39:49.000000000 +0200
+@@ -232,9 +232,6 @@ asmlinkage long sys_oabi_fcntl64(unsigne
+ 				 unsigned long arg)
+ {
+ 	switch (cmd) {
+-	case F_OFD_GETLK:
+-	case F_OFD_SETLK:
+-	case F_OFD_SETLKW:
+ 	case F_GETLK64:
+ 	case F_SETLK64:
+ 	case F_SETLKW64:

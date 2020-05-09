@@ -1,0 +1,48 @@
+--- original/drivers/input/touchscreen/synaptics_i2c_rmi4.c	2020-05-07 08:06:12.268281675 +0200
++++ changed/drivers/input/touchscreen/synaptics_i2c_rmi4.c	2019-06-03 13:39:50.000000000 +0200
+@@ -1068,15 +1068,16 @@ static int synaptics_rmi4_i2c_write(stru
+ {
+ 	int retval;
+ 	unsigned char retry;
+-	unsigned char buf[length + 1];
+-	struct i2c_msg msg[] = {
+-		{
+-			.addr = rmi4_data->i2c_client->addr,
+-			.flags = 0,
+-			.len = length + 1,
+-			.buf = buf,
+-		}
+-	};
++	unsigned char *buf;
++	struct i2c_msg msg[1];
++
++	buf = kzalloc(length + 1, GFP_KERNEL);
++	if (!buf) {
++		dev_err(&rmi4_data->i2c_client->dev,
++				"%s: Failed to alloc mem for buffer\n",
++				__func__);
++		return -ENOMEM;
++	}
+ 
+ 	mutex_lock(&(rmi4_data->rmi4_io_ctrl_mutex));
+ 
+@@ -1084,6 +1085,11 @@ static int synaptics_rmi4_i2c_write(stru
+ 	if (retval != PAGE_SELECT_LEN)
+ 		goto exit;
+ 
++	msg[0].addr = rmi4_data->i2c_client->addr;
++	msg[0].flags = 0;
++	msg[0].len = length + 1;
++	msg[0].buf = buf;
++
+ 	buf[0] = addr & MASK_8BIT;
+ 	memcpy(&buf[1], &data[0], length);
+ 
+@@ -1107,6 +1113,7 @@ static int synaptics_rmi4_i2c_write(stru
+ 
+ exit:
+ 	mutex_unlock(&(rmi4_data->rmi4_io_ctrl_mutex));
++	kfree(buf);
+ 
+ 	return retval;
+ }

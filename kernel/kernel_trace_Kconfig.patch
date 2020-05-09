@@ -1,0 +1,14 @@
+--- original/kernel/trace/Kconfig	2020-05-07 08:06:22.383182284 +0200
++++ changed/kernel/trace/Kconfig	2019-06-03 13:39:54.000000000 +0200
+@@ -643,5 +643,11 @@ config RING_BUFFER_STARTUP_TEST
+ 
+ endif # FTRACE
+ 
++config KERNEL_ATRACE
++	bool "Enable Kernel Atrace"
++	depends on TRACING
++	help
++	 Enable Atrace in Kernel (added by samsung)	 
++
+ endif # TRACING_SUPPORT
+ 

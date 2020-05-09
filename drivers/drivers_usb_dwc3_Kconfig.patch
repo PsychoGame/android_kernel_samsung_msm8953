@@ -1,0 +1,13 @@
+--- original/drivers/usb/dwc3/Kconfig	2020-05-07 08:06:18.701218464 +0200
++++ changed/drivers/usb/dwc3/Kconfig	2019-06-03 13:39:52.000000000 +0200
+@@ -126,4 +126,10 @@ config DWC3_HOST_USB3_LPM_ENABLE
+ 	help
+ 	  Select this when you want to enable USB3 LPM with dwc3 xhci host.
+ 
++config USB_CHARGING_EVENT
++	bool "Set usb charging current "
++	depends on USB_DWC3=y
++	help
++	  For satisfy BC1.2 specification
++	  In unconfigured state or suspend state, Set vbus current to 100mA
+ endif

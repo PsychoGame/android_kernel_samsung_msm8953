@@ -1,0 +1,11 @@
+--- original/include/net/cnss_prealloc.h	2020-05-07 08:53:30.923120898 +0200
++++ changed/include/net/cnss_prealloc.h	2019-06-03 13:39:53.000000000 +0200
+@@ -22,7 +22,7 @@ extern void *wcnss_prealloc_get(size_t s
+ extern int wcnss_prealloc_put(void *ptr);
+ extern int wcnss_pre_alloc_reset(void);
+ 
+-#if !defined(CONFIG_WCNSS_MEM_PRE_ALLOC) || !defined(CONFIG_SLUB_DEBUG)
++#if !defined(CONFIG_WCNSS_MEM_PRE_ALLOC) || !defined(CONFIG_SLUB_DEBUG_ON)
+ static inline void wcnss_prealloc_check_memory_leak(void) {}
+ #else
+ void wcnss_prealloc_check_memory_leak(void);

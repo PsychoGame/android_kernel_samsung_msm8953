@@ -1,0 +1,10 @@
+--- original/Documentation/filesystems/proc.txt	2020-05-07 08:31:19.670842260 +0200
++++ changed/Documentation/filesystems/proc.txt	2019-06-03 13:39:47.000000000 +0200
+@@ -411,6 +411,7 @@ a single pte mapped, i.e.  is currently
+ as private and not as shared.
+ "Referenced" indicates the amount of memory currently marked as referenced or
+ accessed.
++
+ "Anonymous" shows the amount of memory that does not belong to any file.  Even
+ a mapping associated with a file may contain anonymous pages: when MAP_PRIVATE
+ and a page is modified, the file page is replaced by a private anonymous copy.

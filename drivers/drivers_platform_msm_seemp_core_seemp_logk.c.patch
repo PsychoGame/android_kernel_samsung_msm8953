@@ -1,0 +1,43 @@
+--- original/drivers/platform/msm/seemp_core/seemp_logk.c	2020-05-07 08:06:16.515239944 +0200
++++ changed/drivers/platform/msm/seemp_core/seemp_logk.c	2019-06-03 13:39:51.000000000 +0200
+@@ -446,20 +446,6 @@ static long seemp_logk_set_mapping(unsig
+ 		(UINT_MAX / sizeof(struct seemp_source_mask))))
+ 		return -EFAULT;
+ 
+-	write_lock(&filter_lock);
+-	if (NULL != pmask) {
+-		/*
+-		 * Mask is getting set again.
+-		 * seemp_core was probably restarted.
+-		 */
+-		struct seemp_source_mask *ptempmask;
+-
+-		num_sources = 0;
+-		ptempmask = pmask;
+-		pmask = NULL;
+-		kfree(ptempmask);
+-	}
+-	write_unlock(&filter_lock);
+ 	pbuffer = kmalloc(sizeof(struct seemp_source_mask)
+ 				* num_elements, GFP_KERNEL);
+ 	if (NULL == pbuffer)
+@@ -485,6 +471,19 @@ static long seemp_logk_set_mapping(unsig
+ 		pnewmask[i].isOn = 0;
+ 	}
+ 	write_lock(&filter_lock);
++	if (NULL != pmask) {
++		/*
++		 * Mask is getting set again.
++		 * seemp_core was probably restarted.
++		 */
++		struct seemp_source_mask *ptempmask;
++
++		num_sources = 0;
++		ptempmask = pmask;
++		pmask = NULL;
++		kfree(ptempmask);
++	}
++
+ 	pmask = pnewmask;
+ 	num_sources = num_elements;
+ 	write_unlock(&filter_lock);

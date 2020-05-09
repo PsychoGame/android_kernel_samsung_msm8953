@@ -1,0 +1,17 @@
+--- original/drivers/usb/gadget/function/f_uvc.c	2020-05-07 08:31:25.910786124 +0200
++++ changed/drivers/usb/gadget/function/f_uvc.c	2019-06-03 13:39:52.000000000 +0200
+@@ -616,6 +616,14 @@ uvc_function_bind(struct usb_configurati
+ 	opts->streaming_maxpacket = clamp(opts->streaming_maxpacket, 1U, 3072U);
+ 	opts->streaming_maxburst = min(opts->streaming_maxburst, 15U);
+ 
++	/* For SS, wMaxPacketSize has to be 1024 if bMaxBurst is not 0 */
++	if (opts->streaming_maxburst &&
++	    (opts->streaming_maxpacket % 1024) != 0) {
++		opts->streaming_maxpacket = roundup(opts->streaming_maxpacket, 1024);
++		INFO(cdev, "overriding streaming_maxpacket to %d\n",
++		     opts->streaming_maxpacket);
++	}
++
+ 	/* Fill in the FS/HS/SS Video Streaming specific descriptors from the
+ 	 * module parameters.
+ 	 *

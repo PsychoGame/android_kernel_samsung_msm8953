@@ -1,0 +1,23 @@
+--- original/net/ipv6/tcp_ipv6.c	2020-05-07 08:31:27.992767393 +0200
++++ changed/net/ipv6/tcp_ipv6.c	2019-06-03 13:39:54.000000000 +0200
+@@ -1278,7 +1278,7 @@ static int tcp_v6_do_rcv(struct sock *sk
+ 	if (skb->protocol == htons(ETH_P_IP))
+ 		return tcp_v4_do_rcv(sk, skb);
+ 
+-	if (tcp_filter(sk, skb))
++	if (sk_filter(sk, skb))
+ 		goto discard;
+ 
+ 	/*
+@@ -1474,10 +1474,8 @@ process:
+ 		goto discard_and_relse;
+ #endif
+ 
+-	if (tcp_filter(sk, skb))
++	if (sk_filter(sk, skb))
+ 		goto discard_and_relse;
+-	th = (const struct tcphdr *)skb->data;
+-	hdr = ipv6_hdr(skb);
+ 
+ 	sk_mark_napi_id(sk, skb);
+ 	skb->dev = NULL;

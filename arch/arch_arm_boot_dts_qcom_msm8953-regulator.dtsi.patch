@@ -1,0 +1,19 @@
+--- original/arch/arm/boot/dts/qcom/msm8953-regulator.dtsi	2020-05-07 08:31:20.037838959 +0200
++++ changed/arch/arm/boot/dts/qcom/msm8953-regulator.dtsi	2019-06-03 13:39:48.000000000 +0200
+@@ -254,6 +254,16 @@
+ 		};
+ 	};
+ 
++	rpm-regulator-ldoa15 {
++		status = "okay";
++		pm8953_l15: regulator-l15 {
++			regulator-min-microvolt = <1800000>;
++			regulator-max-microvolt = <1800000>;
++			qcom,init-voltage = <1800000>;
++			status = "okay";
++		};
++	};
++
+ 	rpm-regulator-ldoa16 {
+ 		status = "okay";
+ 		pm8953_l16: regulator-l16 {

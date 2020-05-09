@@ -1,0 +1,11 @@
+--- original/kernel/Makefile	2020-05-07 08:31:27.373772962 +0200
++++ changed/kernel/Makefile	2019-06-03 13:39:53.000000000 +0200
+@@ -37,7 +37,7 @@ obj-y += power/
+ obj-y += printk/
+ obj-y += irq/
+ obj-y += rcu/
+-
++obj-$(CONFIG_RELOCATABLE_KERNEL) += kaslr.o
+ obj-$(CONFIG_CHECKPOINT_RESTORE) += kcmp.o
+ obj-$(CONFIG_FREEZER) += freezer.o
+ obj-$(CONFIG_PROFILING) += profile.o

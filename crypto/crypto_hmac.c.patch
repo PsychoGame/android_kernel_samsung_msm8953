@@ -1,0 +1,17 @@
+--- original/crypto/hmac.c	2020-05-07 08:31:21.183828649 +0200
++++ changed/crypto/hmac.c	2019-06-03 13:39:49.000000000 +0200
+@@ -195,12 +195,12 @@ static int hmac_create(struct crypto_tem
+ 	if (IS_ERR(salg))
+ 		return PTR_ERR(salg);
+ 	alg = &salg->base;
+-
++	
+ 	/* The underlying hash algorithm must be unkeyed */
+ 	err = -EINVAL;
+ 	if (crypto_shash_alg_has_setkey(salg))
+ 		goto out_put_alg;
+-
++	
+ 	ds = salg->digestsize;
+ 	ss = salg->statesize;
+ 	if (ds > alg->cra_blocksize ||

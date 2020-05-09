@@ -1,0 +1,16 @@
+--- original/drivers/media/platform/msm/camera_v2/sensor/csiphy/include/msm_csiphy_3_5_hwreg.h	2020-05-07 08:06:13.143273077 +0200
++++ changed/drivers/media/platform/msm/camera_v2/sensor/csiphy/include/msm_csiphy_3_5_hwreg.h	2019-06-03 13:39:50.000000000 +0200
+@@ -80,11 +80,11 @@ struct csiphy_reg_3ph_parms_t csiphy_v3_
+ 	{0x0, 0xD7},
+ 	{0x4, 0x8},
+ 	{0x8, 0x0},
+-	{0xC, 0xA5},
++	{0xC, 0xFF},
+ 	{0x10, 0x50},
+ 	{0x2C, 0x1},
+ 	{0x30, 0x2},
+-	{0x34, 0x3},
++	{0x34, 0x1},
+ 	{0x38, 0x1},
+ 	{0x3C, 0xB8},
+ 	{0x1C, 0xA},

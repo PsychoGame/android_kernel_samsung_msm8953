@@ -1,0 +1,19 @@
+--- original/arch/arm64/include/asm/pgtable.h	2020-05-07 08:31:20.362836035 +0200
++++ changed/arch/arm64/include/asm/pgtable.h	2019-06-03 13:39:48.000000000 +0200
+@@ -211,6 +211,16 @@ static inline pte_t pte_mkspecial(pte_t
+ 	return set_pte_bit(pte, __pgprot(PTE_SPECIAL));
+ }
+ 
++#ifdef CONFIG_TIMA_LKMAUTH
++#ifdef CONFIG_TIMA_LKMAUTH_CODE_PROT
++static inline pte_t pte_mknexec(pte_t pte)
++{
++	pte_val(pte) |= PTE_PXN;
++	return pte;
++}
++#endif
++#endif
++
+ static inline void set_pte(pte_t *ptep, pte_t pte)
+ {
+ 	*ptep = pte;

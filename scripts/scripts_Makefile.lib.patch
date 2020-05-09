@@ -1,0 +1,10 @@
+--- original/scripts/Makefile.lib	2020-05-07 08:31:28.368764011 +0200
++++ changed/scripts/Makefile.lib	2019-06-03 13:39:54.000000000 +0200
+@@ -298,6 +298,7 @@ cmd_dtc = $(CPP) $(dtc_cpp_flags) -x ass
+ 	$(objtree)/scripts/dtc/dtc -O dtb -o $@ -b 0 \
+ 		-i $(dir $<) $(DTC_FLAGS) \
+ 		-d $(depfile).dtc.tmp $(dtc-tmp) ; \
++	$(objtree)/scripts/dtc/dtc -O dts -I dtb -o $@.reverse.dts $@ ; \
+ 	cat $(depfile).pre.tmp $(depfile).dtc.tmp > $(depfile)
+ 
+ $(obj)/%.dtb: $(src)/%.dts FORCE

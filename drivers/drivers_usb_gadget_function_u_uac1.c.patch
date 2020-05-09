@@ -1,0 +1,14 @@
+--- original/drivers/usb/gadget/function/u_uac1.c	2020-05-07 08:31:25.934785908 +0200
++++ changed/drivers/usb/gadget/function/u_uac1.c	2019-06-03 13:39:52.000000000 +0200
+@@ -624,6 +624,11 @@ static int gaudio_open_snd_dev(struct ga
+ 	char *fn_play, *fn_cap, *fn_cntl;
+ 	int res = 0;
+ 
++	if (!card) {
++		pr_err("%s: Card is NULL", __func__);
++		return -ENODEV;
++	}
++
+ 	opts = container_of(card->func.fi, struct f_uac1_opts, func_inst);
+ 	fn_play = opts->fn_play;
+ 	fn_cap = opts->fn_cap;

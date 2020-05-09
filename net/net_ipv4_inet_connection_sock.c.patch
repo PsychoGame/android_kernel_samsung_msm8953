@@ -1,0 +1,11 @@
+--- original/net/ipv4/inet_connection_sock.c	2020-05-07 08:31:27.867768518 +0200
++++ changed/net/ipv4/inet_connection_sock.c	2019-06-03 13:39:54.000000000 +0200
+@@ -684,6 +684,8 @@ struct sock *inet_csk_clone_lock(const s
+ 		inet_sk(newsk)->inet_dport = inet_rsk(req)->ir_rmt_port;
+ 		inet_sk(newsk)->inet_num = inet_rsk(req)->ir_num;
+ 		inet_sk(newsk)->inet_sport = htons(inet_rsk(req)->ir_num);
++		inet_sk(newsk)->mc_list = NULL;
++		
+ 		newsk->sk_write_space = sk_stream_write_space;
+ 
+ 		inet_sk(newsk)->mc_list = NULL;

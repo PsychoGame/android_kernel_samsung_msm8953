@@ -1,0 +1,10 @@
+--- original/include/uapi/linux/Kbuild	2020-05-07 08:31:27.277773826 +0200
++++ changed/include/uapi/linux/Kbuild	2019-06-03 13:39:53.000000000 +0200
+@@ -23,6 +23,7 @@ header-y += wimax/
+ header-y += ../../../drivers/staging/android/uapi/
+ header-y += mfd/
+ header-y += nfc/
++header-y += self_display/
+ 
+ genhdr-y += version.h
+ 

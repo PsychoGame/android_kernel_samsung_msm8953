@@ -1,0 +1,7 @@
+--- original/sound/soc/msm/qdsp6v2/Makefile	2020-05-07 08:31:28.712760916 +0200
++++ changed/sound/soc/msm/qdsp6v2/Makefile	2019-06-03 13:39:55.000000000 +0200
+@@ -20,3 +20,4 @@ obj-y += audio_calibration.o audio_cal_u
+ 	q6audio-v2.o q6voice.o q6core.o rtac.o q6lsm.o msm-pcm-q6-noirq.o
+ ocmem-audio-objs += audio_ocmem.o
+ obj-$(CONFIG_AUDIO_OCMEM) += ocmem-audio.o
++obj-$(CONFIG_SEC_SND_ADAPTATION) += q6audio_adaptation.o

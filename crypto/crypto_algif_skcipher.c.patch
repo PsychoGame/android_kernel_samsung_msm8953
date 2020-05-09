@@ -1,0 +1,15 @@
+--- original/crypto/algif_skcipher.c	2020-05-07 08:31:21.176828712 +0200
++++ changed/crypto/algif_skcipher.c	2019-06-03 13:39:49.000000000 +0200
+@@ -468,6 +468,12 @@ static int skcipher_recvmsg(struct kiocb
+ 			err = -EINVAL;
+ 			if (!used)
+ 				goto free;
++			sgl = list_first_entry(&ctx->tsgl,
++						struct skcipher_sg_list, list);
++			sg = sgl->sg;
++
++			while (!sg->length)
++				sg++;
+ 
+ 			sgl = list_first_entry(&ctx->tsgl,
+ 					       struct skcipher_sg_list, list);

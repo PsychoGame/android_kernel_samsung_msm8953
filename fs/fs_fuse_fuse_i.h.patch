@@ -1,0 +1,12 @@
+--- original/fs/fuse/fuse_i.h	2020-05-07 08:31:26.477781023 +0200
++++ changed/fs/fuse/fuse_i.h	2019-06-03 13:39:53.000000000 +0200
+@@ -405,6 +405,9 @@ struct fuse_conn {
+ 	/** Maximum write size */
+ 	unsigned max_write;
+ 
++	/** Free space reserve size */
++	unsigned reserved_space_mb;
++
+ 	/** Readers of the connection are waiting on this */
+ 	wait_queue_head_t waitq;
+ 

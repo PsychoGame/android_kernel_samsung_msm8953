@@ -1,0 +1,21 @@
+--- original/arch/arm/boot/Makefile	2020-05-07 08:06:05.077352335 +0200
++++ changed/arch/arm/boot/Makefile	2019-06-03 13:39:48.000000000 +0200
+@@ -11,6 +11,9 @@
+ # Copyright (C) 1995-2002 Russell King
+ #
+ 
++ifneq ($(MACHINE),)
++include $(srctree)/$(MACHINE)/Makefile.boot
++endif
+ include $(srctree)/arch/arm/boot/dts/Makefile
+ 
+ include $(srctree)/arch/arm/boot/dts/Makefile
+@@ -37,7 +40,7 @@ DTB_LIST := $(addsuffix .dtb,$(DTB_NAMES
+ else
+ DTB_LIST := $(dtb-y)
+ endif
+-DTB_OBJS := $(addprefix $(obj)/dts/qcom/,$(DTB_LIST))
++DTB_OBJS := $(shell find $(obj)/dts/ -name \*.dtb)
+ 
+ ifeq ($(CONFIG_XIP_KERNEL),y)
+ 

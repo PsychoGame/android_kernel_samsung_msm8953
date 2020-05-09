@@ -1,0 +1,23 @@
+--- original/arch/arm/Kconfig.debug	2020-05-07 08:06:05.074352365 +0200
++++ changed/arch/arm/Kconfig.debug	2019-06-03 13:39:48.000000000 +0200
+@@ -1362,4 +1362,20 @@ config DEBUG_SET_MODULE_RONX
+ 	  against certain classes of kernel exploits.
+ 	  If in doubt, say "N".
+ 
++comment "PowerManagement Feature"
++menuconfig SEC_PM
++	bool "Samsung TN PowerManagement Feature"
++	default y
++	help
++	  Samsung TN PowerManagement Feature.
++
++if SEC_PM
++config SEC_PM_DEBUG
++	bool "Samsung TN PowerManagement Debug Feature"
++	default n
++	help
++	  Samsung TN PowerManagement Debug Feature.
++
++endif
++
+ endmenu

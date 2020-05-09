@@ -1,0 +1,11 @@
+--- original/drivers/base/core.c	2020-05-07 08:31:21.266827903 +0200
++++ changed/drivers/base/core.c	2019-06-03 13:39:49.000000000 +0200
+@@ -452,7 +452,7 @@ static ssize_t online_store(struct devic
+ 	unlock_device_hotplug();
+ 	return ret < 0 ? ret : count;
+ }
+-static DEVICE_ATTR_RW(online);
++static DEVICE_ATTR(online, S_IWUSR | S_IRUGO | S_IWGRP, online_show, online_store);
+ 
+ int device_add_groups(struct device *dev, const struct attribute_group **groups)
+ {

@@ -1,0 +1,13 @@
+--- original/drivers/hwmon/Kconfig	2020-05-07 08:06:11.661287640 +0200
++++ changed/drivers/hwmon/Kconfig	2019-06-03 13:39:50.000000000 +0200
+@@ -1736,4 +1736,10 @@ config SENSORS_ATK0110
+ 
+ endif # ACPI
+ 
++config SEC_THERMISTOR
++        bool "Use external thermistor near AP for checking temprature"
++        default n
++        help
++        Use thermistor driver for checking temperature near AP chip.
++
+ endif # HWMON

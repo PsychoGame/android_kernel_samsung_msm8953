@@ -1,0 +1,11 @@
+--- original/drivers/media/platform/msm/sde/rotator/sde_rotator_r1_ctl.c	2020-05-07 08:06:13.170272812 +0200
++++ changed/drivers/media/platform/msm/sde/rotator/sde_rotator_r1_ctl.c	2019-06-03 13:39:50.000000000 +0200
+@@ -133,7 +133,7 @@ struct sde_mdp_mixer *sde_mdp_mixer_get(
+ 
+ int sde_mdp_get_pipe_flush_bits(struct sde_mdp_pipe *pipe)
+ {
+-	u32 flush_bits;
++	u32 flush_bits = 0;
+ 
+ 	if (pipe->type == SDE_MDP_PIPE_TYPE_DMA)
+ 		flush_bits |= BIT(pipe->num) << 5;

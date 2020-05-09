@@ -1,0 +1,10 @@
+--- original/drivers/media/Kconfig	2020-05-07 08:06:12.677277656 +0200
++++ changed/drivers/media/Kconfig	2019-06-03 13:39:50.000000000 +0200
+@@ -209,4 +209,7 @@ source "drivers/media/i2c/Kconfig"
+ source "drivers/media/tuners/Kconfig"
+ source "drivers/media/dvb-frontends/Kconfig"
+ 
++# TDMB drivers
++source "drivers/media/tdmb/Kconfig"
++
+ endif # MEDIA_SUPPORT

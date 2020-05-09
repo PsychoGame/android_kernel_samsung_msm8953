@@ -1,0 +1,12 @@
+--- original/drivers/misc/qcom/qdsp6v2/audio_utils.c	2020-05-07 11:40:16.569313073 +0200
++++ changed/drivers/misc/qcom/qdsp6v2/audio_utils.c	2019-06-03 13:39:50.000000000 +0200
+@@ -879,8 +879,7 @@ ssize_t audio_in_write(struct file *file
+ 						__func__, audio->ac->session);
+ 			}
+ 		}
+-		xfer = (count > (audio->pcm_cfg.buffer_size)) ?
+-				(audio->pcm_cfg.buffer_size) : count;
++		xfer = (count > size) ? size : count;
+ 
+ 		if (copy_from_user(cpy_ptr, buf, xfer)) {
+ 			rc = -EFAULT;

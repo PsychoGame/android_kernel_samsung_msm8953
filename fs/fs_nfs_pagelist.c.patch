@@ -1,0 +1,11 @@
+--- original/fs/nfs/pagelist.c	2020-05-07 08:06:20.324202516 +0200
++++ changed/fs/nfs/pagelist.c	2019-06-03 13:39:53.000000000 +0200
+@@ -115,7 +115,7 @@ __nfs_iocounter_wait(struct nfs_io_count
+ 		set_bit(NFS_IO_INPROGRESS, &c->flags);
+ 		if (atomic_read(&c->io_count) == 0)
+ 			break;
+-		ret = nfs_wait_bit_killable(&q.key);
++		ret = nfs_wait_bit_killable(&q.key, TASK_KILLABLE);
+ 	} while (atomic_read(&c->io_count) != 0 && !ret);
+ 	finish_wait(wq, &q.wait);
+ 	return ret;

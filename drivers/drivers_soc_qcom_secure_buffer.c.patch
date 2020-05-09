@@ -1,0 +1,11 @@
+--- original/drivers/soc/qcom/secure_buffer.c	2020-05-07 08:51:35.069255690 +0200
++++ changed/drivers/soc/qcom/secure_buffer.c	2019-06-03 13:39:52.000000000 +0200
+@@ -355,6 +355,8 @@ const char *msm_secure_vmid_to_string(in
+ 	switch (secure_vmid) {
+ 	case VMID_HLOS:
+ 		return "VMID_HLOS";
++	case VMID_ADSP:
++		return "VMID_ADSP";
+ 	case VMID_CP_TOUCH:
+ 		return "VMID_CP_TOUCH";
+ 	case VMID_CP_BITSTREAM:

@@ -1,0 +1,18 @@
+--- original/drivers/platform/msm/ipa/ipa_v2/ipa_rt.c	2020-05-07 11:02:09.621857388 +0200
++++ changed/drivers/platform/msm/ipa/ipa_v2/ipa_rt.c	2019-06-03 13:39:52.000000000 +0200
+@@ -1204,6 +1204,7 @@ int __ipa_del_rt_rule(u32 rule_hdl)
+ 			return -EINVAL;
+ 		}
+ 	}
++
+ 	/* Adding check to confirm still
+ 	 * header entry present in header table or not
+ 	 */
+@@ -1418,6 +1419,7 @@ int ipa2_reset_rt(enum ipa_ip_type ip, b
+ 						return -EINVAL;
+ 					}
+ 				}
++				
+ 				tbl->rule_cnt--;
+ 				if (rule->hdr)
+ 					__ipa_release_hdr(rule->hdr->id);

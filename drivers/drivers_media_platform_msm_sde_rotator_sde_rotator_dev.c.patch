@@ -1,0 +1,28 @@
+--- original/drivers/media/platform/msm/sde/rotator/sde_rotator_dev.c	2020-05-07 08:31:23.706805952 +0200
++++ changed/drivers/media/platform/msm/sde/rotator/sde_rotator_dev.c	2019-06-03 13:39:50.000000000 +0200
+@@ -625,7 +625,7 @@ static void sde_rotator_stop_streaming(s
+ 			struct sde_rotator_vbinfo *vbinfo =
+ 					&ctx->vbinfo_cap[i];
+ 
+-			if (vbinfo->fence && vbinfo->fd < 0) {
++			if (vbinfo->fence) {
+ 				/* fence is not used */
+ 				SDEDEV_DBG(rot_dev->dev,
+ 						"put fence s:%d t:%d i:%d\n",
+@@ -1555,7 +1555,7 @@ static int sde_rotator_dqbuf(struct file
+ 			&& (buf->index < ctx->nbuf_cap)) {
+ 		int idx = buf->index;
+ 
+-		if (ctx->vbinfo_cap[idx].fence && ctx->vbinfo_cap[idx].fd < 0) {
++		if (ctx->vbinfo_cap[idx].fence) {
+ 			/* fence is not used */
+ 			SDEDEV_DBG(ctx->rot_dev->dev, "put fence s:%d i:%d\n",
+ 					ctx->session_id, idx);
+@@ -1961,6 +1961,7 @@ static long sde_rotator_private_ioctl(st
+ 					ctx->session_id);
+ 				return vbinfo->fd;
+ 			}
++			vbinfo->fence = NULL;
+ 		}
+ 		fence->fd = vbinfo->fd;
+ 

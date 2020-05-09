@@ -1,0 +1,15 @@
+--- original/net/netfilter/xt_quota2.c	2020-05-07 08:31:28.205765477 +0200
++++ changed/net/netfilter/xt_quota2.c	2019-06-03 13:39:54.000000000 +0200
+@@ -294,7 +294,11 @@ quota_mt2(const struct sk_buff *skb, str
+ 		if (!(q->flags & XT_QUOTA_NO_CHANGE)) {
+ 			e->quota += (q->flags & XT_QUOTA_PACKET) ? 1 : skb->len;
+ 		}
+-		ret = true;
++
++		if (!e->quota) {
++			quota2_log(par->in, par->out, e, q->name);
++		} else
++			ret = !ret;
+ 	} else {
+ 		if (e->quota >= skb->len) {
+ 			if (!(q->flags & XT_QUOTA_NO_CHANGE))

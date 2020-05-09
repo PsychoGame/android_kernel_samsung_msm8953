@@ -1,0 +1,11 @@
+--- original/drivers/staging/Kconfig	2020-05-07 08:06:17.750227808 +0200
++++ changed/drivers/staging/Kconfig	2019-06-03 13:39:52.000000000 +0200
+@@ -108,4 +108,8 @@ source "drivers/staging/skein/Kconfig"
+ 
+ source "drivers/staging/unisys/Kconfig"
+ 
++source "drivers/staging/sti/Kconfig"
++
++source "drivers/staging/vnswap/Kconfig"
++
+ endif # STAGING

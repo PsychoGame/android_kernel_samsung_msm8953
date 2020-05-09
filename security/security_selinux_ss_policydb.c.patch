@@ -1,0 +1,26 @@
+--- original/security/selinux/ss/policydb.c	2020-05-07 08:06:23.832168046 +0200
++++ changed/security/selinux/ss/policydb.c	2019-06-03 13:39:54.000000000 +0200
+@@ -1500,6 +1500,11 @@ static int type_read(struct policydb *p,
+ 		goto bad;
+ 	return 0;
+ bad:
++// [ SEC_SELINUX_PORTING_COMMON
++#ifndef CONFIG_ALWAYS_ENFORCE
++	panic("SELinux:Failed to type read");
++#endif /*CONFIG_ALWAYS_ENFORCE*/
++// ] SEC_SELINUX_PORTING_COMMON
+ 	type_destroy(key, typdatum, NULL);
+ 	return rc;
+ }
+@@ -2508,6 +2513,11 @@ int policydb_read(struct policydb *p, vo
+ out:
+ 	return rc;
+ bad:
++// [ SEC_SELINUX_PORTING_COMMON
++#ifndef CONFIG_ALWAYS_ENFORCE
++	panic("SELinux:Failed to load policy");
++#endif /*CONFIG_ALWAYS_ENFORCE*/
++// ] SEC_SELINUX_PORTING_COMMON
+ 	policydb_destroy(p);
+ 	goto out;
+ }

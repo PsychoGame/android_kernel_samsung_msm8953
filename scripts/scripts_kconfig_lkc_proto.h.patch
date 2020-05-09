@@ -1,0 +1,11 @@
+--- original/scripts/kconfig/lkc_proto.h	2020-05-07 08:06:23.737168979 +0200
++++ changed/scripts/kconfig/lkc_proto.h	2019-06-03 13:39:54.000000000 +0200
+@@ -3,7 +3,7 @@
+ /* confdata.c */
+ P(conf_parse,void,(const char *name));
+ P(conf_read,int,(const char *name));
+-P(conf_read_simple,int,(const char *name, int));
++P(conf_read_simple,int,(const char *name, int, int));
+ P(conf_write_defconfig,int,(const char *name));
+ P(conf_write,int,(const char *name));
+ P(conf_write_autoconf,int,(void));

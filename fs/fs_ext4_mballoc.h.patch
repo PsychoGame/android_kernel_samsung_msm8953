@@ -1,0 +1,15 @@
+--- original/fs/ext4/mballoc.h	2020-05-07 08:06:20.101204707 +0200
++++ changed/fs/ext4/mballoc.h	2019-06-03 13:39:53.000000000 +0200
+@@ -91,10 +91,8 @@ extern ushort ext4_mballoc_debug;
+ 
+ 
+ struct ext4_free_data {
+-	/* MUST be the first member */
+-	struct ext4_journal_cb_entry	efd_jce;
+-
+-	/* ext4_free_data private data starts from here */
++	/* this links the free block information from sb_info */
++	struct list_head		efd_list;
+ 
+ 	/* this links the free block information from group_info */
+ 	struct rb_node			efd_node;

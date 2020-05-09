@@ -1,0 +1,17 @@
+--- original/include/linux/dqblk_qtree.h	2020-05-07 08:06:21.098194911 +0200
++++ changed/include/linux/dqblk_qtree.h	2019-06-03 13:39:53.000000000 +0200
+@@ -15,6 +15,7 @@
+ #define QTREE_DEL_REWRITE 6
+ 
+ struct dquot;
++struct kqid;
+ 
+ /* Operations */
+ struct qtree_fmt_operations {
+@@ -52,5 +53,6 @@ static inline int qtree_depth(struct qtr
+ 		entries *= epb;
+ 	return i;
+ }
++int qtree_get_next_id(struct qtree_mem_dqinfo *info, struct kqid *qid);
+ 
+ #endif /* _LINUX_DQBLK_QTREE_H */

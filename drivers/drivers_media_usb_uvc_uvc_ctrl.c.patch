@@ -1,0 +1,13 @@
+--- original/drivers/media/usb/uvc/uvc_ctrl.c	2020-05-07 08:31:23.811805007 +0200
++++ changed/drivers/media/usb/uvc/uvc_ctrl.c	2019-06-03 13:39:50.000000000 +0200
+@@ -1990,6 +1990,10 @@ int uvc_ctrl_add_mapping(struct uvc_vide
+ 	}
+ 	if (!found)
+ 		return -ENOENT;
++	
++	if (ctrl->info.size < mapping->size)
++		return -EINVAL;
++	
+ 
+ 	if (ctrl->info.size < mapping->size)
+ 		return -EINVAL;

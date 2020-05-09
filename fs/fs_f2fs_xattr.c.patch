@@ -1,0 +1,10 @@
+--- original/fs/f2fs/xattr.c	2020-05-07 08:51:35.281253613 +0200
++++ changed/fs/f2fs/xattr.c	2019-06-03 13:39:53.000000000 +0200
+@@ -642,6 +642,7 @@ static int __f2fs_setxattr(struct inode
+ 			goto exit;
+ 		}
+ 
++		/* Value is NULL to remove an existing extended attribute */
+ 		if (value && f2fs_xattr_value_same(here, value, size))
+ 			goto exit;
+ 	} else if ((flags & XATTR_REPLACE)) {

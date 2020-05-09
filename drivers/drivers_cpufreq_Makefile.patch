@@ -1,0 +1,12 @@
+--- original/drivers/cpufreq/Makefile	2020-05-07 08:06:09.806305867 +0200
++++ changed/drivers/cpufreq/Makefile	2019-06-03 13:39:49.000000000 +0200
+@@ -4,6 +4,9 @@ obj-$(CONFIG_CPU_FREQ)			+= cpufreq.o fr
+ # CPUfreq stats
+ obj-$(CONFIG_CPU_FREQ_STAT)             += cpufreq_stats.o
+ 
++# CPUfreq limit API
++obj-$(CONFIG_CPU_FREQ_LIMIT)             += cpufreq_limit.o
++
+ # CPUfreq governors 
+ obj-$(CONFIG_CPU_FREQ_GOV_PERFORMANCE)	+= cpufreq_performance.o
+ obj-$(CONFIG_CPU_FREQ_GOV_POWERSAVE)	+= cpufreq_powersave.o

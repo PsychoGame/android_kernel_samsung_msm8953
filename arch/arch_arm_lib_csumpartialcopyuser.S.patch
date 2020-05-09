@@ -1,0 +1,15 @@
+--- original/arch/arm/lib/csumpartialcopyuser.S	2020-05-07 08:31:20.233837195 +0200
++++ changed/arch/arm/lib/csumpartialcopyuser.S	2019-06-03 13:39:49.000000000 +0200
+@@ -85,7 +85,11 @@
+ 		.pushsection .fixup,"ax"
+ 		.align	4
+ 9001:		mov	r4, #-EFAULT
+-		ldr	r5, [sp, #8*4]		@ *err_ptr
++#ifdef CONFIG_CPU_SW_DOMAIN_PAN 
++		ldr r5, [sp, #9*4] @ *err_ptr 
++#else 
++		ldr r5, [sp, #8*4] @ *err_ptr 
++#endif 
+ 		str	r4, [r5]
+ 		ldmia	sp, {r1, r2}		@ retrieve dst, len
+ 		add	r2, r2, r1

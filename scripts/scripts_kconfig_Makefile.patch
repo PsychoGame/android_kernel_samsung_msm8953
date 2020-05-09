@@ -1,0 +1,37 @@
+--- original/scripts/kconfig/Makefile	2020-05-07 08:31:28.377763930 +0200
++++ changed/scripts/kconfig/Makefile	2019-06-03 13:39:54.000000000 +0200
+@@ -85,6 +85,34 @@ allnoconfig allyesconfig allmodconfig al
+ 
+ PHONY += listnewconfig olddefconfig oldnoconfig savedefconfig defconfig
+ 
++ifneq ($(VARIANT_DEFCONFIG),)
++export KCONFIG_VARIANT := arch/$(SRCARCH)/configs/$(VARIANT_DEFCONFIG)
++endif
++
++ifneq ($(DEBUG_DEFCONFIG),)
++export KCONFIG_DEBUG := arch/$(SRCARCH)/configs/$(DEBUG_DEFCONFIG)
++endif
++
++ifneq ($(SELINUX_DEFCONFIG),)
++export KCONFIG_SELINUX := arch/$(SRCARCH)/configs/$(SELINUX_DEFCONFIG)
++endif
++
++ifneq ($(SELINUX_LOG_DEFCONFIG),)
++export KCONFIG_LOG_SELINUX := arch/$(SRCARCH)/configs/$(SELINUX_LOG_DEFCONFIG)
++endif
++
++ifneq ($(TIMA_DEFCONFIG),)
++export KCONFIG_TIMA := arch/$(SRCARCH)/configs/$(TIMA_DEFCONFIG)
++endif
++
++ifneq ($(DMVERITY_DEFCONFIG),)
++export KCONFIG_DMVERITY := arch/$(SRCARCH)/configs/$(DMVERITY_DEFCONFIG)
++endif
++
++ifneq ($(KASLR_DEFCONFIG),)
++export KCONFIG_KASLR := arch/$(SRCARCH)/configs/$(KASLR_DEFCONFIG)
++endif
++
+ listnewconfig olddefconfig: $(obj)/conf
+ 	$< --$@ $(Kconfig)
+ 

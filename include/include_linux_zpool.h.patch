@@ -1,0 +1,33 @@
+--- original/include/linux/zpool.h	2020-05-07 08:06:21.606189919 +0200
++++ changed/include/linux/zpool.h	2019-06-03 13:39:53.000000000 +0200
+@@ -32,6 +32,9 @@ enum zpool_mapmode {
+ 	ZPOOL_MM_RW, /* normal read-write mapping */
+ 	ZPOOL_MM_RO, /* read-only (no copy-out at unmap time) */
+ 	ZPOOL_MM_WO, /* write-only (no copy-in at map time) */
++#ifdef CONFIG_ZSWAP_SAME_PAGE_SHARING
++	ZPOOL_MM_RO_NOWAIT, /*read-only (no wait if the handle is busy*/
++#endif
+ 
+ 	ZPOOL_MM_DEFAULT = ZPOOL_MM_RW
+ };
+@@ -58,6 +61,9 @@ void zpool_unmap_handle(struct zpool *po
+ 
+ u64 zpool_get_total_size(struct zpool *pool);
+ 
++unsigned long zpool_compact(struct zpool *pool);
++
++bool zpool_compactable(struct zpool *pool, unsigned int pages);
+ 
+ /**
+  * struct zpool_driver - driver implementation for zpool
+@@ -95,6 +101,10 @@ struct zpool_driver {
+ 				enum zpool_mapmode mm);
+ 	void (*unmap)(void *pool, unsigned long handle);
+ 
++	unsigned long (*compact)(void *pool);
++
++	bool (*compactable)(void *pool, unsigned int pages);
++
+ 	u64 (*total_size)(void *pool);
+ };
+ 

@@ -1,0 +1,11 @@
+--- original/block/blk-sysfs.c	2020-05-07 08:06:08.867315094 +0200
++++ changed/block/blk-sysfs.c	2019-06-03 13:39:49.000000000 +0200
+@@ -292,7 +292,7 @@ static struct queue_sysfs_entry queue_re
+ };
+ 
+ static struct queue_sysfs_entry queue_ra_entry = {
+-	.attr = {.name = "read_ahead_kb", .mode = S_IRUGO | S_IWUSR },
++	.attr = {.name = "read_ahead_kb", .mode = S_IRUGO },
+ 	.show = queue_ra_show,
+ 	.store = queue_ra_store,
+ };

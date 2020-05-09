@@ -1,0 +1,10 @@
+--- original/fs/sdcardfs/main.c	2020-05-07 08:51:35.324253192 +0200
++++ changed/fs/sdcardfs/main.c	2019-06-03 13:39:53.000000000 +0200
+@@ -264,7 +264,6 @@ static int sdcardfs_read_super(struct vf
+ 
+ 	pr_info("sdcardfs: dev_name -> %s\n", dev_name);
+ 	pr_info("sdcardfs: options -> %s\n", (char *)raw_data);
+-	pr_info("sdcardfs: mnt -> %pK\n", mnt);
+ 
+ 	/* parse lower path */
+ 	err = kern_path(dev_name, LOOKUP_FOLLOW | LOOKUP_DIRECTORY,

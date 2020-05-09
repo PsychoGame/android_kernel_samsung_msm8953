@@ -1,0 +1,13 @@
+--- original/net/core/iovec.c	2020-05-07 08:06:22.943176781 +0200
++++ changed/net/core/iovec.c	2019-06-03 13:39:54.000000000 +0200
+@@ -88,6 +88,10 @@ int csum_partial_copy_fromiovecend(unsig
+ 	__wsum csum = *csump;
+ 	int partial_cnt = 0, err = 0;
+ 
++	/* No data? Done! */
++	if (len == 0)
++		return 0;
++
+ 	/* Skip over the finished iovecs */
+ 	while (offset >= iov->iov_len) {
+ 		offset -= iov->iov_len;

@@ -1,0 +1,12 @@
+--- original/kernel/irq/irqdesc.c	2020-05-07 08:31:27.434772414 +0200
++++ changed/kernel/irq/irqdesc.c	2019-06-03 13:39:53.000000000 +0200
+@@ -19,6 +19,9 @@
+ 
+ #include "internals.h"
+ 
++#include <linux/sec_debug.h>
++
++
+ /*
+  * lockdep: we want to handle all irq_desc locks as a single lock-class:
+  */

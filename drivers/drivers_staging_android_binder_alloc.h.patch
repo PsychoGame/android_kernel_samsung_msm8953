@@ -1,0 +1,12 @@
+--- original/drivers/staging/android/binder_alloc.h	2020-05-07 08:31:25.457790199 +0200
++++ changed/drivers/staging/android/binder_alloc.h	2019-06-03 13:39:52.000000000 +0200
+@@ -50,8 +50,7 @@ struct binder_buffer {
+ 	unsigned free:1;
+ 	unsigned allow_user_free:1;
+ 	unsigned async_transaction:1;
+-	unsigned free_in_progress:1;
+-	unsigned debug_id:28;
++	unsigned debug_id:29;
+ 
+ 	struct binder_transaction *transaction;
+ 

@@ -1,0 +1,17 @@
+--- original/fs/nfs/inode.c	2020-05-07 08:31:26.550780366 +0200
++++ changed/fs/nfs/inode.c	2019-06-03 13:39:53.000000000 +0200
+@@ -75,11 +75,11 @@ nfs_fattr_to_ino_t(struct nfs_fattr *fat
+  * nfs_wait_bit_killable - helper for functions that are sleeping on bit locks
+  * @word: long word containing the bit lock
+  */
+-int nfs_wait_bit_killable(struct wait_bit_key *key)
++int nfs_wait_bit_killable(struct wait_bit_key *key, int mode)
+ {
+-	if (fatal_signal_pending(current))
+-		return -ERESTARTSYS;
+ 	freezable_schedule_unsafe();
++	if (signal_pending_state(mode, current))
++		return -ERESTARTSYS;
+ 	return 0;
+ }
+ EXPORT_SYMBOL_GPL(nfs_wait_bit_killable);

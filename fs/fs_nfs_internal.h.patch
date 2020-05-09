@@ -1,0 +1,11 @@
+--- original/fs/nfs/internal.h	2020-05-07 08:06:20.295202801 +0200
++++ changed/fs/nfs/internal.h	2019-06-03 13:39:53.000000000 +0200
+@@ -349,7 +349,7 @@ extern int nfs_drop_inode(struct inode *
+ extern void nfs_clear_inode(struct inode *);
+ extern void nfs_evict_inode(struct inode *);
+ void nfs_zap_acl_cache(struct inode *inode);
+-extern int nfs_wait_bit_killable(struct wait_bit_key *key);
++extern int nfs_wait_bit_killable(struct wait_bit_key *key, int mode);
+ 
+ /* super.c */
+ extern const struct super_operations nfs_sops;

@@ -1,0 +1,12 @@
+--- original/drivers/usb/storage/usb.c	2020-05-07 08:06:19.179213767 +0200
++++ changed/drivers/usb/storage/usb.c	2019-06-03 13:39:52.000000000 +0200
+@@ -937,6 +937,9 @@ int usb_stor_probe1(struct us_data **pus
+ 	/*
+ 	 * Allow 16-byte CDBs and thus > 2TB
+ 	 */
++#ifdef CONFIG_USB_STORAGE_DETECT
++	host->by_usb = 1;
++#endif
+ 	host->max_cmd_len = 16;
+ 	host->sg_tablesize = usb_stor_sg_tablesize(intf);
+ 	*pus = us = host_to_us(host);

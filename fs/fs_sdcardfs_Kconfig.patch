@@ -1,0 +1,11 @@
+--- original/fs/sdcardfs/Kconfig	2020-05-07 08:06:20.703198792 +0200
++++ changed/fs/sdcardfs/Kconfig	2019-06-03 13:39:53.000000000 +0200
+@@ -1,7 +1,7 @@
+ config SDCARD_FS
+ 	tristate "sdcard file system"
+ 	depends on CONFIGFS_FS
+-	default n
++	default y
+ 	help
+ 	  Sdcardfs is based on Wrapfs file system.
+ 

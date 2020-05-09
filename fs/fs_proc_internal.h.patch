@@ -1,0 +1,27 @@
+--- original/fs/proc/internal.h	2020-05-07 08:06:20.485200934 +0200
++++ changed/fs/proc/internal.h	2019-06-03 13:39:53.000000000 +0200
+@@ -154,7 +154,8 @@ extern int proc_pid_status(struct seq_fi
+ 			   struct pid *, struct task_struct *);
+ extern int proc_pid_statm(struct seq_file *, struct pid_namespace *,
+ 			  struct pid *, struct task_struct *);
+-
++extern int proc_pid_statlmkd(struct seq_file *, struct pid_namespace *,
++			  struct pid *, struct task_struct *);
+ /*
+  * base.c
+  */
+@@ -288,6 +289,7 @@ extern const struct file_operations proc
+ extern const struct file_operations proc_pid_numa_maps_operations;
+ extern const struct file_operations proc_tid_numa_maps_operations;
+ extern const struct file_operations proc_pid_smaps_operations;
++extern const struct file_operations proc_pid_smaps_simple_operations;
+ extern const struct file_operations proc_tid_smaps_operations;
+ extern const struct file_operations proc_clear_refs_operations;
+ extern const struct file_operations proc_pagemap_operations;
+@@ -296,4 +298,6 @@ extern unsigned long task_vsize(struct m
+ extern unsigned long task_statm(struct mm_struct *,
+ 				unsigned long *, unsigned long *,
+ 				unsigned long *, unsigned long *);
++extern void task_statlmkd(struct mm_struct *, unsigned long *,
++				unsigned long *, unsigned long *);
+ extern void task_mem(struct seq_file *, struct mm_struct *);

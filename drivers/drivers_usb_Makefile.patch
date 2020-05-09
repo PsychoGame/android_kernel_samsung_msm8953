@@ -1,0 +1,10 @@
+--- original/drivers/usb/Makefile	2020-05-07 08:06:18.660218867 +0200
++++ changed/drivers/usb/Makefile	2019-06-03 13:39:52.000000000 +0200
+@@ -62,3 +62,7 @@ obj-$(CONFIG_USB_GADGET)	+= gadget/
+ obj-$(CONFIG_USB_COMMON)	+= common/
+ 
+ obj-$(CONFIG_USBIP_CORE)	+= usbip/
++
++obj-$(CONFIG_TYPEC)		+= typec/
++obj-$(CONFIG_USB_NOTIFY_LAYER)	+= notify/
++obj-$(CONFIG_USB_TYPEC_MANAGER_NOTIFIER)	+= manager/

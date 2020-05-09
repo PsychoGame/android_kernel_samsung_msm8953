@@ -1,0 +1,21 @@
+--- original/drivers/usb/host/xhci.h	2020-05-07 08:31:25.966785620 +0200
++++ changed/drivers/usb/host/xhci.h	2019-06-03 13:39:52.000000000 +0200
+@@ -1434,7 +1434,7 @@ struct xhci_bus_state {
+ 
+ static inline unsigned int hcd_index(struct usb_hcd *hcd)
+ {
+-	if (hcd->speed == HCD_USB3)
++	if (hcd->speed >= HCD_USB3)
+ 		return 0;
+ 	else
+ 		return 1;
+@@ -1568,6 +1568,9 @@ struct xhci_hcd {
+ /* For controllers with a broken beyond repair streams implementation */
+ #define XHCI_BROKEN_STREAMS	(1 << 19)
+ #define XHCI_PME_STUCK_QUIRK	(1 << 20)
++/* For enabling USB2.0 L1 mode */
++#define XHCI_LPM_L1_SUPPORT	(1 << 31)
++
+ 	unsigned int		num_active_eps;
+ 	unsigned int		limit_active_eps;
+ 	/* There are two roothubs to keep track of bus suspend info for */

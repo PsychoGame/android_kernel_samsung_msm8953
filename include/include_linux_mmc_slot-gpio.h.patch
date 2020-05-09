@@ -1,0 +1,9 @@
+--- original/include/linux/mmc/slot-gpio.h	2020-05-07 08:06:21.347192464 +0200
++++ changed/include/linux/mmc/slot-gpio.h	2019-06-03 13:39:53.000000000 +0200
+@@ -30,5 +30,6 @@ int mmc_gpiod_request_ro(struct mmc_host
+ 			 unsigned int debounce, bool *gpio_invert);
+ void mmc_gpiod_free_cd(struct mmc_host *host);
+ void mmc_gpiod_request_cd_irq(struct mmc_host *host);
++void mmc_gpiod_update_status(struct mmc_host *host, int present);
+ 
+ #endif

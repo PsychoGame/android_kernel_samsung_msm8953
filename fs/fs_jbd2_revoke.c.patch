@@ -1,0 +1,13 @@
+--- original/fs/jbd2/revoke.c	2020-05-07 08:06:20.213203607 +0200
++++ changed/fs/jbd2/revoke.c	2019-06-03 13:39:53.000000000 +0200
+@@ -675,6 +675,10 @@ static void flush_descriptor(journal_t *
+ 	set_buffer_jwrite(descriptor);
+ 	BUFFER_TRACE(descriptor, "write");
+ 	set_buffer_dirty(descriptor);
++#ifdef CONFIG_JOURNAL_DATA_TAG
++	if (journal->j_flags & JBD2_JOURNAL_TAG)
++		set_buffer_journal(descriptor);
++#endif
+ 	write_dirty_buffer(descriptor, write_op);
+ }
+ #endif

@@ -1,0 +1,12 @@
+--- original/drivers/net/usb/Makefile	2020-05-07 08:06:15.099253858 +0200
++++ changed/drivers/net/usb/Makefile	2019-06-03 13:39:51.000000000 +0200
+@@ -17,7 +17,8 @@ obj-$(CONFIG_USB_NET_DM9601)	+= dm9601.o
+ obj-$(CONFIG_USB_NET_SR9700)	+= sr9700.o
+ obj-$(CONFIG_USB_NET_SR9800)	+= sr9800.o
+ obj-$(CONFIG_USB_NET_SMSC75XX)	+= smsc75xx.o
+-obj-$(CONFIG_USB_NET_SMSC95XX)	+= smsc95xx.o
++obj-$(CONFIG_USB_NET_SMSC95XX)	+= smsc9500.o
++obj-$(CONFIG_USB_NET_SMSC95XX)	+= smscusbnet.o
+ obj-$(CONFIG_USB_NET_GL620A)	+= gl620a.o
+ obj-$(CONFIG_USB_NET_NET1080)	+= net1080.o
+ obj-$(CONFIG_USB_NET_PLUSB)	+= plusb.o

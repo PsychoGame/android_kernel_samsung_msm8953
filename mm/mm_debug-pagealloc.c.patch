@@ -1,0 +1,11 @@
+--- original/mm/debug-pagealloc.c	2020-05-07 08:06:22.512181016 +0200
++++ changed/mm/debug-pagealloc.c	2019-06-03 13:39:53.000000000 +0200
+@@ -82,6 +82,8 @@ static void check_poison_mem(struct page
+ 	print_hex_dump(KERN_ERR, "", DUMP_PREFIX_ADDRESS, 16, 1, start,
+ 			end - start + 1, 1);
+ 	dump_stack();
++
++	BUG();
+ }
+ 
+ static void unpoison_page(struct page *page)

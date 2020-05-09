@@ -1,0 +1,12 @@
+--- original/drivers/hid/usbhid/usbhid.h	2020-05-07 08:06:11.641287836 +0200
++++ changed/drivers/hid/usbhid/usbhid.h	2019-06-03 13:39:50.000000000 +0200
+@@ -92,6 +92,9 @@ struct usbhid_device {
+ 	unsigned int retry_delay;                                       /* Delay length in ms */
+ 	struct work_struct reset_work;                                  /* Task context for resets */
+ 	wait_queue_head_t wait;						/* For sleeping */
++#ifdef CONFIG_USB_DEBUG_DETAILED_LOG
++	unsigned long in_err_isr;
++#endif
+ };
+ 
+ #define	hid_to_usb_dev(hid_dev) \

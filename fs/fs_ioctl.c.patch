@@ -1,0 +1,12 @@
+--- original/fs/ioctl.c	2020-05-07 08:06:20.204203695 +0200
++++ changed/fs/ioctl.c	2019-06-03 13:39:53.000000000 +0200
+@@ -18,6 +18,9 @@
+ 
+ #include <asm/ioctls.h>
+ 
++#include "internal.h"
++#include <linux/namei.h>
++
+ /* So that the fiemap access checks can't overflow on 32 bit machines. */
+ #define FIEMAP_MAX_EXTENTS	(UINT_MAX / sizeof(struct fiemap_extent))
+ 

@@ -1,0 +1,11 @@
+--- original/drivers/gpu/msm/adreno_dispatch.c	2020-05-07 08:31:22.958812681 +0200
++++ changed/drivers/gpu/msm/adreno_dispatch.c	2019-06-03 13:39:50.000000000 +0200
+@@ -28,7 +28,7 @@
+ #define CMDQUEUE_NEXT(_i, _s) (((_i) + 1) % (_s))
+ 
+ /* Time in ms after which the dispatcher tries to schedule an unscheduled RB */
+-unsigned int adreno_dispatch_starvation_time = 2000;
++unsigned int adreno_dispatch_starvation_time = 1000;
+ 
+ /* Amount of time in ms that a starved RB is permitted to execute for */
+ unsigned int adreno_dispatch_time_slice = 25;

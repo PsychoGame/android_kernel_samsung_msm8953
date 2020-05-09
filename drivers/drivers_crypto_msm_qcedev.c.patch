@@ -1,0 +1,34 @@
+--- original/drivers/crypto/msm/qcedev.c	2020-05-07 08:31:21.456826194 +0200
++++ changed/drivers/crypto/msm/qcedev.c	2019-06-03 13:39:49.000000000 +0200
+@@ -1642,7 +1642,6 @@ long qcedev_ioctl(struct file *file, uns
+ 	case QCEDEV_IOCTL_SHA_INIT_REQ:
+ 		{
+ 		struct scatterlist sg_src;
+-
+ 		if (copy_from_user(&qcedev_areq.sha_op_req,
+ 					(void __user *)arg,
+ 					sizeof(struct qcedev_sha_op_req)))
+@@ -1671,7 +1670,6 @@ long qcedev_ioctl(struct file *file, uns
+ 	case QCEDEV_IOCTL_SHA_UPDATE_REQ:
+ 		{
+ 		struct scatterlist sg_src;
+-
+ 		if (copy_from_user(&qcedev_areq.sha_op_req,
+ 					(void __user *)arg,
+ 					sizeof(struct qcedev_sha_op_req)))
+@@ -1701,7 +1699,6 @@ long qcedev_ioctl(struct file *file, uns
+ 				return err;
+ 			}
+ 		}
+-
+ 		if (handle->sha_ctxt.diglen > QCEDEV_MAX_SHA_DIGEST) {
+ 			pr_err("Invalid sha_ctxt.diglen %d\n",
+ 					handle->sha_ctxt.diglen);
+@@ -1759,7 +1756,6 @@ long qcedev_ioctl(struct file *file, uns
+ 	case QCEDEV_IOCTL_GET_SHA_REQ:
+ 		{
+ 		struct scatterlist sg_src;
+-
+ 		if (copy_from_user(&qcedev_areq.sha_op_req,
+ 					(void __user *)arg,
+ 					sizeof(struct qcedev_sha_op_req)))

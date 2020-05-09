@@ -1,0 +1,16 @@
+--- original/drivers/usb/gadget/function/f_rmnet.c	2020-05-07 08:31:25.902786196 +0200
++++ changed/drivers/usb/gadget/function/f_rmnet.c	2019-06-03 13:39:52.000000000 +0200
+@@ -83,8 +83,13 @@ static struct usb_interface_descriptor r
+ 	.bDescriptorType =	USB_DT_INTERFACE,
+ 	.bNumEndpoints =	3,
+ 	.bInterfaceClass =	USB_CLASS_VENDOR_SPEC,
++#ifdef CONFIG_USB_ANDROID_SAMSUNG_COMPOSITE
++	.bInterfaceSubClass =	0xE0,
++	.bInterfaceProtocol =	0x01,
++#else
+ 	.bInterfaceSubClass =	USB_CLASS_VENDOR_SPEC,
+ 	.bInterfaceProtocol =	USB_CLASS_VENDOR_SPEC,
++#endif
+ 	/* .iInterface = DYNAMIC */
+ };
+ 

@@ -1,0 +1,7 @@
+--- original/drivers/rtc/Makefile	2020-05-07 08:06:16.768237458 +0200
++++ changed/drivers/rtc/Makefile	2019-06-03 13:39:52.000000000 +0200
+@@ -150,3 +150,4 @@ obj-$(CONFIG_RTC_DRV_X1205)	+= rtc-x1205
+ obj-$(CONFIG_RTC_DRV_XGENE)	+= rtc-xgene.o
+ obj-$(CONFIG_RTC_DRV_SIRFSOC)	+= rtc-sirfsoc.o
+ obj-$(CONFIG_RTC_DRV_MOXART)	+= rtc-moxart.o
++obj-$(CONFIG_RTC_AUTO_PWRON)	+= power-on-alarm.o

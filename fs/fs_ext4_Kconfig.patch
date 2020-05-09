@@ -1,0 +1,10 @@
+--- original/fs/ext4/Kconfig	2020-05-07 08:31:26.356782112 +0200
++++ changed/fs/ext4/Kconfig	2019-06-03 13:39:53.000000000 +0200
+@@ -43,6 +43,7 @@ config EXT4_FS_POSIX_ACL
+ 	bool "Ext4 POSIX Access Control Lists"
+ 	depends on EXT4_FS
+ 	select FS_POSIX_ACL
++	default y
+ 	help
+ 	  POSIX Access Control Lists (ACLs) support permissions for users and
+ 	  groups beyond the owner/group/world scheme.

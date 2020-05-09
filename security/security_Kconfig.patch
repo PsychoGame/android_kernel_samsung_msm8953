@@ -1,0 +1,14 @@
+--- original/security/Kconfig	2020-05-07 08:31:28.397763750 +0200
++++ changed/security/Kconfig	2019-06-03 13:39:54.000000000 +0200
+@@ -178,6 +178,11 @@ source security/apparmor/Kconfig
+ source security/yama/Kconfig
+ 
+ source security/integrity/Kconfig
++source security/tz_iccc/Kconfig
++source security/knox_test/Kconfig
++source security/samsung/defex_lsm/Kconfig
++source security/proca/Kconfig
++source security/samsung/dsms/Kconfig
+ 
+ choice
+ 	prompt "Default security module"

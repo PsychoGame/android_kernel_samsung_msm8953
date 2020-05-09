@@ -1,0 +1,11 @@
+--- original/drivers/usb/gadget/function/f_qc_ecm.c	2020-05-07 08:31:25.897786241 +0200
++++ changed/drivers/usb/gadget/function/f_qc_ecm.c	2019-06-03 13:39:52.000000000 +0200
+@@ -1133,7 +1133,7 @@ ecm_qc_bind_config(struct usb_configurat
+ 	if (ecm->xport != USB_GADGET_XPORT_BAM2BAM_IPA)
+ 		return status;
+ 
+-	pr_debug("setting ecm_ipa, host_ethaddr=%pM, device_ethaddr=%pM",
++	pr_debug("setting ecm_ipa, host_ethaddr=%pKM, device_ethaddr=%pKM",
+ 			ipa_params.host_ethaddr, ipa_params.device_ethaddr);
+ 	status = ecm_ipa_init(&ipa_params);
+ 	if (status) {

@@ -1,0 +1,17 @@
+--- original/drivers/char/hw_random/core.c	2020-05-07 08:31:21.361827048 +0200
++++ changed/drivers/char/hw_random/core.c	2019-06-03 13:39:49.000000000 +0200
+@@ -410,10 +410,12 @@ int hwrng_register(struct hwrng *rng)
+ 
+ 	old_rng = current_rng;
+ 	if (!old_rng) {
++		current_rng = rng;
+ 		err = hwrng_init(rng);
+-		if (err)
++		if (err) {
++			current_rng = NULL;
+ 			goto out_unlock;
+-		current_rng = rng;
++		}
+ 	}
+ 	err = 0;
+ 	if (!old_rng) {

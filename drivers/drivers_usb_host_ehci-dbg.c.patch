@@ -1,0 +1,11 @@
+--- original/drivers/usb/host/ehci-dbg.c	2020-05-07 08:06:18.808217412 +0200
++++ changed/drivers/usb/host/ehci-dbg.c	2019-06-03 13:39:52.000000000 +0200
+@@ -850,7 +850,7 @@ static ssize_t fill_registers_buffer(str
+ 			default:		/* unknown */
+ 				break;
+ 			}
+-			temp = (cap >> 8) & 0xff;
++			offset = (cap >> 8) & 0xff;
+ 		}
+ 	}
+ #endif

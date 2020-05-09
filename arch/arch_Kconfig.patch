@@ -1,0 +1,16 @@
+--- original/arch/Kconfig	2020-05-07 08:31:19.766841397 +0200
++++ changed/arch/Kconfig	2019-06-03 13:39:48.000000000 +0200
+@@ -493,6 +493,13 @@ config HAVE_IRQ_EXIT_ON_IRQ_STACK
+ 	  This spares a stack switch and improves cache usage on softirq
+ 	  processing.
+ 
++config ARCH_HAS_ELF_RANDOMIZE
++	bool
++	help
++	  An architecture supports choosing randomized locations for
++	  stack, mmap, brk, and ET_DYN. Defined functions:
++	  - arch_mmap_rnd()
++
+ config HAVE_ARCH_MMAP_RND_BITS
+ 	bool
+ 	help

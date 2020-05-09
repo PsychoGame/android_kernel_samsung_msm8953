@@ -1,0 +1,10 @@
+--- original/drivers/usb/core/config.c	2020-05-07 08:51:35.087255513 +0200
++++ changed/drivers/usb/core/config.c	2019-06-03 13:39:52.000000000 +0200
+@@ -840,7 +840,6 @@ int usb_get_bos_descriptor(struct usb_de
+ 	for (i = 0; i < num; i++) {
+ 		buffer += length;
+ 		cap = (struct usb_dev_cap_header *)buffer;
+-
+ 		if (total_len < sizeof(*cap) || total_len < cap->bLength) {
+ 			dev->bos->desc->bNumDeviceCaps = i;
+ 			break;

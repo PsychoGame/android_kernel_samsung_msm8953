@@ -1,0 +1,15 @@
+--- original/security/keys/user_defined.c	2020-05-07 08:06:23.810168262 +0200
++++ changed/security/keys/user_defined.c	2019-06-03 13:39:54.000000000 +0200
+@@ -163,6 +163,12 @@ void user_destroy(struct key *key)
+ {
+ 	struct user_key_payload *upayload = key->payload.data;
+ 
++#ifdef CONFIG_CRYPTO_FIPS
++	if(upayload)
++	{
++		memset(upayload->data, 0, upayload->datalen);
++	}
++#endif
+ 	kfree(upayload);
+ }
+ 

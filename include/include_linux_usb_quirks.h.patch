@@ -1,0 +1,10 @@
+--- original/include/linux/usb/quirks.h	2020-05-07 08:06:21.581190164 +0200
++++ changed/include/linux/usb/quirks.h	2019-06-03 13:39:53.000000000 +0200
+@@ -50,4 +50,7 @@
+ /* device can't handle Link Power Management */
+ #define USB_QUIRK_NO_LPM			BIT(10)
+ 
++/* Device needs a pause after every control message. */
++#define USB_QUIRK_DELAY_CTRL_MSG		BIT(13)
++
+ #endif /* __LINUX_USB_QUIRKS_H */

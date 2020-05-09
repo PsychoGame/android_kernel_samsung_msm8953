@@ -1,0 +1,11 @@
+--- original/mm/usercopy.c	2020-05-07 08:31:27.665770335 +0200
++++ changed/mm/usercopy.c	2019-06-03 13:39:54.000000000 +0200
+@@ -209,7 +209,7 @@ static inline const char *check_heap_obj
+ 	 * vmalloced addresses. Work around this by checking for vmalloc
+ 	 * first.
+ 	 */
+-	if (is_vmalloc_addr(ptr))
++	if (is_vmalloc_or_module_addr(ptr))
+ 		return NULL;
+ 
+ 	if (!virt_addr_valid(ptr))

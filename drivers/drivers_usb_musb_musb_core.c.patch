@@ -1,0 +1,18 @@
+--- original/drivers/usb/musb/musb_core.c	2020-05-07 08:06:18.910216410 +0200
++++ changed/drivers/usb/musb/musb_core.c	2019-06-03 13:39:52.000000000 +0200
+@@ -1700,6 +1700,7 @@ musb_vbus_show(struct device *dev, struc
+ 	unsigned long	val;
+ 	int		vbus;
+ 
++	pm_runtime_get_sync(dev);
+ 	spin_lock_irqsave(&musb->lock, flags);
+ 	val = musb->a_wait_bcon;
+ 	/* FIXME get_vbus_status() is normally #defined as false...
+@@ -1707,6 +1708,7 @@ musb_vbus_show(struct device *dev, struc
+ 	 */
+ 	vbus = musb_platform_get_vbus_status(musb);
+ 	spin_unlock_irqrestore(&musb->lock, flags);
++	pm_runtime_put_sync(dev);
+ 
+ 	return sprintf(buf, "Vbus %s, timeout %lu msec\n",
+ 			vbus ? "on" : "off", val);

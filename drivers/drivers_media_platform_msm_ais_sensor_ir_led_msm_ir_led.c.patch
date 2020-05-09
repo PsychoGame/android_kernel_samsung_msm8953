@@ -1,0 +1,30 @@
+--- original/drivers/media/platform/msm/ais/sensor/ir_led/msm_ir_led.c	2020-05-07 11:18:28.028756420 +0200
++++ changed/drivers/media/platform/msm/ais/sensor/ir_led/msm_ir_led.c	2019-06-03 13:39:50.000000000 +0200
+@@ -1,4 +1,4 @@
+-/* Copyright (c) 2016-2018, The Linux Foundation. All rights reserved.
++/* Copyright (c) 2016-2017, The Linux Foundation. All rights reserved.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License version 2 and
+@@ -312,6 +312,10 @@ static long msm_ir_led_subdev_do_ioctl(
+ 		(struct msm_ir_led_cfg_data_t32 *)arg;
+ 	struct msm_ir_led_cfg_data_t ir_led_data;
+ 
++	ir_led_data.cfg_type = u32->cfg_type;
++	ir_led_data.pwm_duty_on_ns = u32->pwm_duty_on_ns;
++	ir_led_data.pwm_period_ns = u32->pwm_period_ns;
++
+ 	switch (cmd) {
+ 	case VIDIOC_MSM_IR_LED_CFG32:
+ 		cmd = VIDIOC_MSM_IR_LED_CFG;
+@@ -320,10 +324,6 @@ static long msm_ir_led_subdev_do_ioctl(
+ 		return msm_ir_led_subdev_ioctl(sd, cmd, arg);
+ 	}
+ 
+-	ir_led_data.cfg_type = u32->cfg_type;
+-	ir_led_data.pwm_duty_on_ns = u32->pwm_duty_on_ns;
+-	ir_led_data.pwm_period_ns = u32->pwm_period_ns;
+-
+ 	rc = msm_ir_led_subdev_ioctl(sd, cmd, &ir_led_data);
+ 
+ 	return rc;

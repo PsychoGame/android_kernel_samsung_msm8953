@@ -1,0 +1,13 @@
+--- original/drivers/usb/gadget/function/rndis.c	2020-05-07 08:06:18.750217982 +0200
++++ changed/drivers/usb/gadget/function/rndis.c	2019-06-03 13:39:52.000000000 +0200
+@@ -902,8 +902,10 @@ int rndis_msg_parser(u8 configNr, u8 *bu
+ 		 */
+ 		pr_warning("%s: unknown RNDIS message 0x%08X len %d\n",
+ 			__func__, MsgType, MsgLength);
++                /*
+ 		print_hex_dump_bytes(__func__, DUMP_PREFIX_OFFSET,
+ 				     buf, MsgLength);
++                */
+ 		break;
+ 	}
+ 

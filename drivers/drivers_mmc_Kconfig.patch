@@ -1,0 +1,27 @@
+--- original/drivers/mmc/Kconfig	2020-05-07 08:06:13.913265511 +0200
++++ changed/drivers/mmc/Kconfig	2019-06-03 13:39:50.000000000 +0200
+@@ -27,6 +27,24 @@ config MMC_PERF_PROFILING
+ 	  If you say Y here, support will be added for collecting
+ 	  performance numbers at the MMC Queue and Host layers.
+ 
++config SEC_HYBRID_TRAY
++        bool "Samsung HYBRID TRAY Project"
++        depends on MMC != n
++        default n
++        help
++          Support for Samsung HYBRID TRAY Project
++
++config NO_DETECT_PIN
++	bool "Samsung No Detect Project"
++	depends on MMC != n
++	default n
++	help
++
++config MMC_SUPPORT_STLOG
++        bool "Enable storage log"
++        depends on MMC && PROC_STLOG
++        default y
++
+ if MMC
+ 
+ source "drivers/mmc/core/Kconfig"

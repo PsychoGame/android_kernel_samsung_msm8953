@@ -1,0 +1,8 @@
+--- original/drivers/video/msm/mdss/Kconfig	2020-05-07 08:31:26.043784928 +0200
++++ changed/drivers/video/msm/mdss/Kconfig	2019-06-03 13:39:53.000000000 +0200
+@@ -82,3 +82,5 @@ config FB_MSM_MDSS_FRC_DEBUG
+ 	frame rate control (FRC) debugging features to: Collect video frame
+ 	statistics and check whether its output pattern matches expected
+ 	cadence.
++
++source "drivers/video/msm/mdss/samsung/Kconfig"

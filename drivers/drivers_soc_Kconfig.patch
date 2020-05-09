@@ -1,0 +1,9 @@
+--- original/drivers/soc/Kconfig	2020-05-07 08:06:17.621229076 +0200
++++ changed/drivers/soc/Kconfig	2019-06-03 13:39:52.000000000 +0200
+@@ -3,5 +3,6 @@ menu "SOC (System On Chip) specific Driv
+ source "drivers/soc/qcom/Kconfig"
+ source "drivers/soc/ti/Kconfig"
+ source "drivers/soc/versatile/Kconfig"
++source "drivers/soc/samsung/Kconfig"
+ 
+ endmenu

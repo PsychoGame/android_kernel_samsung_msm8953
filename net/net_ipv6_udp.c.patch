@@ -1,0 +1,12 @@
+--- original/net/ipv6/udp.c	2020-05-07 08:31:27.994767375 +0200
++++ changed/net/ipv6/udp.c	2019-06-03 13:39:54.000000000 +0200
+@@ -429,7 +429,8 @@ try_again:
+ 		err = skb_copy_datagram_iovec(skb, sizeof(struct udphdr),
+ 					      msg->msg_iov, copied);
+ 	else {
+-		err = skb_copy_and_csum_datagram_iovec(skb, sizeof(struct udphdr), msg->msg_iov);
++		err = skb_copy_and_csum_datagram_iovec(skb, sizeof(struct udphdr),
++						       msg->msg_iov, copied);
+ 		if (err == -EINVAL)
+ 			goto csum_copy_err;
+ 	}

@@ -1,0 +1,10 @@
+--- original/fs/drop_caches.c	2020-05-07 08:06:20.035205356 +0200
++++ changed/fs/drop_caches.c	2019-06-03 13:39:53.000000000 +0200
+@@ -46,6 +46,7 @@ static void drop_slab(void)
+ 
+ 	nodes_setall(shrink.nodes_to_scan);
+ 	do {
++		shrink.priority = DEF_PRIORITY;
+ 		nr_objects = shrink_slab(&shrink, 1000, 1000);
+ 	} while (nr_objects > 10);
+ }

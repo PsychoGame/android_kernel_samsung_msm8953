@@ -1,0 +1,10 @@
+--- original/fs/reiserfs/super.c	2020-05-07 08:31:26.654779430 +0200
++++ changed/fs/reiserfs/super.c	2019-06-03 13:39:53.000000000 +0200
+@@ -798,6 +798,7 @@ static const struct dquot_operations rei
+ 	.write_info = reiserfs_write_info,
+ 	.alloc_dquot	= dquot_alloc,
+ 	.destroy_dquot	= dquot_destroy,
++	.get_next_id	= dquot_get_next_id,
+ };
+ 
+ static const struct quotactl_ops reiserfs_qctl_operations = {
